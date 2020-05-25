@@ -1,0 +1,47 @@
+@import "@styles/theme.scss";
+.searchBar{
+  display: flex;
+  height: 80px;
+  padding: 0 20px;
+  flex-direction: row;
+  background-color: #fff;
+  &__leftWrap{
+    flex:1;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 70px;
+    padding: 0 20px;
+    margin-right: 20px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    @include hairline(border-width);
+    border-radius: 10px;
+    &-hint{
+      flex: 1;
+      color: #333;
+      font-size: 30px;
+      height: 35px;
+      line-height: 35px;
+
+      padding-left: 20px;
+      /*  #ifndef  rn  */
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      /*  #endif  */
+      overflow:hidden;
+    }
+  }
+  &__rightWrap{
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    &-btn{
+      font-size: 20px;
+      line-height: 20px;
+      color: #333333;
+    }
+  }
+}

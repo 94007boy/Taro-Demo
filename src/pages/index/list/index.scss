@@ -1,0 +1,51 @@
+@import "@styles/theme.scss";
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  background-color: #eee;
+
+  &__btm{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    &-txt{
+      text-align: center;
+      height: 80px;
+      line-height: 80px;
+      font-size: 30px;
+      color: #aaa;
+      margin-right: 20px;
+    }
+    &-icon{
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+.itemWrap{
+  display: flex;
+  flex-direction: column;
+  &__btm{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    &-txt{
+      text-align: center;
+      height: 80px;
+      line-height: 80px;
+      font-size: 30px;
+      color: #aaa;
+      margin-right: 20px;
+    }
+    &-icon{
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
