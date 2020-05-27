@@ -37,7 +37,7 @@ export default class Item extends PureComponent {
           <Text className='list__item-top-time'>{item.data.duration}</Text>
         </View>
         <View className='list__item-btm'>
-          <Image className='list__item-btm-avatar' src={item.data.author.icon}/>
+          <View className='list__item-btm-avatar'><Image className='list__item-btm-avatar-img' src={item.data.author.icon}/></View>
           <View className='list__item-btm-midWrap'>
             <View className='list__item-btm-usrInfo'>
               <Text className='list__item-btm-usrInfo-name'>{item.data.author.name}</Text>

@@ -52,7 +52,7 @@ class Index extends PureComponent {
       <View className='page'>
         <SearchBar/>
         <TabBar tabs={tabs} onTabClick={this.onTabClick}/>
-        <List topDist={170} datas={datas} />
+        <List list-class='page__list' topDist={170} datas={datas} />
       </View>
     )
   }

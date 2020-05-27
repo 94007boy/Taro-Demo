@@ -39,7 +39,7 @@ const indexMod = observable({
     if (!isLoadMore) Taro.showLoading({title: '加载中...', mask: true})
     let res = []
     this.isLoading = true
-    const datas = await Serv.getVideos(id)
+    const datas = await Serv.getVideos(id) || []
     //对源数据进行加工，以符合页面字段显示
     datas.map(data => {
       if (data && data.type === 'videoSmallCard' && data.data.author) {

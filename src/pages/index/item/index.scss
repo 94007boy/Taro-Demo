@@ -1,4 +1,6 @@
 @import "@styles/theme.scss";
+$avatarSize: 80px;
+
 .list__item {
   display: flex;
   flex-direction: column;
@@ -9,13 +11,15 @@
     height: 120px;
     background-color: #fff;
     &-avatar{
-      height: 80px;
-      width: 80px;
-      border-radius: 80px;
-      /*  #ifdef  rn  */
-      border-radius: 1000px;//100%不起作用
-      /*  #endif  */
       margin-left: 20px;
+      width: $avatarSize;
+      height: $avatarSize;
+      border-radius: $avatarSize / 2;
+      overflow: hidden;
+      &-img{
+        width: $avatarSize;
+        height: $avatarSize;
+      }
     }
     &-midWrap{
       display: flex;
