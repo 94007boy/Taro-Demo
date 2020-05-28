@@ -2,6 +2,7 @@ import qs from 'qs';
 import Taro from '@tarojs/taro'
 import { md5 } from './md5.js'
 import '@tarojs/async-await'
+import { jsonArr } from '@utils/mock'
 
 //定义const类型方法变量request，否则无法export
 const request = async (options) => {
@@ -9,7 +10,12 @@ const request = async (options) => {
   options.mode = 'cors'//h5附加参数，允许跨域
   let res
   try {
-    res = await Taro.request(options)
+    if(mock){
+      res =  resMock(options)
+      console.log(res)
+    }else {
+      res = await Taro.request(options)
+    }
   }catch (e) {
 
   }
@@ -28,6 +34,14 @@ const request = async (options) => {
     }else {
       return result
     }
+  }
+}
+
+function resMock(options){
+ let index = Math.floor(Math.random()*10+1)%5
+  return {
+    statusCode:200,
+    data:jsonArr[index]
   }
 }
 
