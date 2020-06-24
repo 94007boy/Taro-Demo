@@ -6,12 +6,14 @@ import List from './list/index'
 import { observer, inject } from '@tarojs/mobx'
 import './index.scss'
 
+@inject('appMod')
 @inject('indexMod')
 @observer
 class Index extends PureComponent {
 
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '首页',
+    disableScroll: true
   }
 
   constructor(props) {
@@ -19,40 +21,25 @@ class Index extends PureComponent {
   }
 
   componentDidShow () {
-    this.onTabClick({id:'127398',name:"推荐"})
+    const { appMod } = this.props
+    appMod.init()
+    const { indexMod } = this.props
+    indexMod.onTabClick('127398')
   }
 
-  onTabClick = (tab) => {
+  onTabClick(tab){
     const { indexMod } = this.props
-    indexMod.currentId = tab.id
-    //判断当前tab的列表数据是否被缓存过
-    let hasCached = false
-    indexMod.list.map(data => {
-      if(data.id === tab.id){
-        hasCached = true
-      }
-    })
-    //如果没有缓存当前tab数据，就去请求服务器
-    if(!hasCached){
-      indexMod.getDatas(tab.id)
-    }
     indexMod.onTabClick(tab.id)
   }
 
   render () {
-    const { indexMod: { list,currentId,tabs } } = this.props
-    let datas = []//当前tab对应的列表数据
-    //从全部数组中找出当前tab对应的数组
-    list.map(data => {
-      if(data.id === currentId){
-        datas = data.res
-      }
-    })
+    console.log('index render ------')
+    const { indexMod: { tabs,currentId,currentDatas } } = this.props
     return (
       <View className='page'>
         <SearchBar/>
-        <TabBar tabs={tabs} onTabClick={this.onTabClick}/>
-        <List list-class='page__list' topDist={170} datas={datas} />
+        <TabBar tabs={tabs} onTabClick={this.onTabClick.bind(this)}/>
+        <List topDist={170} currentId={currentId} datas={currentDatas} />
       </View>
     )
   }

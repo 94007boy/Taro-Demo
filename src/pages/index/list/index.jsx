@@ -15,7 +15,6 @@ let height = 0
 @observer
 export default class List extends PureComponent {
 
-  static externalClasses = ['list-class']
   static defaultProps = {
     datas:[]
   }
@@ -59,11 +58,14 @@ export default class List extends PureComponent {
 
   }
 
+  onTabClick(tab){
+  }
+
   render() {
     const {datas} = this.props
     return (
       <ScrollView
-        className='list-class'
+        className={scrollWarp}
         style={{height}}
         data={datas}
         scrollY
@@ -83,6 +85,7 @@ export default class List extends PureComponent {
           </View>}
         </View>
       </ScrollView>
+
     )
   }
 

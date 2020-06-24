@@ -2,7 +2,8 @@ import qs from 'qs';
 import Taro from '@tarojs/taro'
 import { md5 } from './md5.js'
 import '@tarojs/async-await'
-import { jsonArr } from '@utils/mock'
+import { jsonArr } from '@utils/mock-index'
+import { jsonDetail } from '@utils/mock-detail'
 
 //定义const类型方法变量request，否则无法export
 const request = async (options) => {
@@ -38,11 +39,19 @@ const request = async (options) => {
 }
 
 function resMock(options){
- let index = Math.floor(Math.random()*10+1)%5
-  return {
-    statusCode:200,
-    data:jsonArr[index]
+  if(options.url.indexOf('/videoRecommend') > -1){
+    let index = Math.floor(Math.random()*10+1)%5
+    return {
+      statusCode:200,
+      data:jsonArr[index]
+    }
+  }else {
+    return {
+      statusCode:200,
+      data:jsonDetail
+    }
   }
+
 }
 
 export default request;

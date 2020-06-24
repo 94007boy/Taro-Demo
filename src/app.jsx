@@ -1,8 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
 import Index from './pages/index'
-import indexMod from './store/index-mod'
-
+import store from "./store";
 import './app.scss'
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -11,15 +10,12 @@ import './app.scss'
 //   require('nerv-devtools')
 // }
 
-const store = {
-  indexMod
-}
-
 class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/detail/index',
     ],
     window: {
       backgroundTextStyle: 'light',

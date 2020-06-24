@@ -17,6 +17,7 @@ class TabBar extends Component {
   }
 
   onTabClick(tab){
+    console.log('onTabClick >>>')
     this.setState({currentId:tab.id})
     this.props.onTabClick(tab)
   }
