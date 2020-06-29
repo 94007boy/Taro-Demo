@@ -66,33 +66,25 @@ const indexMod = observable({
         res.push(data)
       }
     })
-    if (isLoadMore) {//加载更多
-      this.datas = this.datas.map(item => {
-        if (item.id === this.currentId) {//找到后更新数据
-          item.res = item.res.concat(res)
-          this.currentDatas = item.res
-        }
-        return item
-      })
-    } else {
-      let hasTabData = false
-      this.datas = this.datas.map(item => {
-        if (item.id === this.currentId) {
-          item.res = res//数据替换
-          hasTabData = true
-        }
-        return item
-      })
-      if(!hasTabData){
-        this.datas.push({
-          id,
-          res:res
-        })
+    let hasTabData = false
+    this.datas = this.datas.map(item => {
+      if (item.id === this.currentId) {
+        item.res = res//数据替换
+        hasTabData = true
       }
-      this.currentDatas = res
+      return item
+    })
+    if(!hasTabData){
+      this.datas.push({
+        id,
+        res:res
+      })
     }
-    Taro.hideLoading()
+    this.currentDatas = res
     this.isLoading = false
+    if(!isLoadMore){//刷新时，请求完成需要隐藏loading框
+      Taro.hideLoading()
+    }
     return this.datas
   }
 

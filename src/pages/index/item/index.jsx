@@ -25,7 +25,7 @@ export default class Item extends PureComponent {
   }
 
   onItemClick = (e) => {
-    Taro.navigateTo({url: '/pages/detail/index'})
+    // Taro.navigateTo({url: '/pages/detail/index'})
   }
 
   render () {

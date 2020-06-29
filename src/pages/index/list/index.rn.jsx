@@ -48,26 +48,17 @@ export default class List extends PureComponent {
     if(nextProps.currentId != this.props.currentId){
       Taro.showLoading({title: '加载中...', mask: true})
       this.listView.refresh()
+      this.listView.scrollToIndex({viewPosition: 0, index: 0})
     }
   }
 
   onFetch = async (page = 1, startFetch, abortFetch) => {
-    const { indexMod  } = this.props
+    const { indexMod:{currentId}  } = this.props
+    const { indexMod } = this.props
     try{
-      const datas = await indexMod.getDatas(indexMod.currentId, page > 1)
-      if(!datas || !datas.length){
-        startFetch([], 10)
-        return
-      }
-      let tabDatas = []//当前tab对应的列表数据
-      //从全部数组中找出当前tab对应的数组
-      datas.map(data => {
-        if(data.id === indexMod.currentId){
-          tabDatas = data.res
-        }
-      })
-      console.log('startFetch',tabDatas.length)
-      startFetch(tabDatas, 10)
+      await indexMod.getDatas(currentId, page > 1)
+      const { indexMod:{currentDatas}  } = this.props
+      startFetch(currentDatas.slice(), 10)
     }catch (err) {
       abortFetch() // manually stop the refresh or pagination if it encounters network error
       console.log(err)
@@ -79,16 +70,9 @@ export default class List extends PureComponent {
   )
 
   renderItem = (item, index, separator) => {
-    if(!item.data){
-      console.log('renderItem',item)
-    }
     return (
-      item.data?<Item item={item} index={index} key={index}/>:<Text>空</Text>
+      <Item item={item} index={index} key={index}/>
     )
-  }
-
-  onTabClick(tab){
-
   }
 
   render() {

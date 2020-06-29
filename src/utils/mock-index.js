@@ -5,22 +5,6 @@ const jsonArr = [
     "result": [
       {
         "data": {
-          "subTitle": null,
-          "dataType": "TextCard",
-          "actionUrl": "",
-          "id": 0,
-          "text": "相关推荐",
-          "type": "header4",
-          "follow": null,
-          "adTrack": null
-        },
-        "adIndex": -1,
-        "tag": null,
-        "id": 0,
-        "type": "textCard"
-      },
-      {
-        "data": {
           "date": 1566230475000,
           "shareAdTrack": null,
           "releaseTime": 1566230475000,
@@ -636,225 +620,6 @@ const jsonArr = [
       },
       {
         "data": {
-          "date": 1555603262000,
-          "shareAdTrack": null,
-          "releaseTime": 1555603262000,
-          "brandWebsiteInfo": null,
-          "description": "总说要做的事情，总会以各种各样的理由推到「明天」。明日复明日，你到底什么时候开始做？有时候，虚度人生、浪费时间在拖延上，就等于慢性自杀！",
-          "remark": null,
-          "collected": false,
-          "title": "每次想拖延的时候，不妨看看这条视频",
-          "type": "NORMAL",
-          "favoriteAdTrack": null,
-          "recallSource": "",
-          "waterMarks": null,
-          "playUrl": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss",
-          "cover": {
-            "feed": "http://img.kaiyanapp.com/b3d69d55c5494262184236b92feb2b69.jpeg?imageMogr2/quality/60/format/jpg",
-            "detail": "http://img.kaiyanapp.com/b3d69d55c5494262184236b92feb2b69.jpeg?imageMogr2/quality/60/format/jpg",
-            "sharing": null,
-            "blurred": "http://img.kaiyanapp.com/a5917decca79fb76366f2326be5f9df9.jpeg?imageMogr2/quality/60/format/jpg",
-            "homepage": "http://img.kaiyanapp.com/b3d69d55c5494262184236b92feb2b69.jpeg?imageView2/1/w/720/h/560/format/jpg/q/75|watermark/1/image/aHR0cDovL2ltZy5rYWl5YW5hcHAuY29tL2JsYWNrXzMwLnBuZw==/dissolve/100/gravity/Center/dx/0/dy/0|imageslim"
-          },
-          "duration": 198,
-          "library": "DAILY",
-          "descriptionEditor": "总说要做的事情，总会以各种各样的理由推到「明天」。明日复明日，你到底什么时候开始做？有时候，虚度人生、浪费时间在拖延上，就等于慢性自杀！",
-          "provider": {
-            "name": "YouTube",
-            "icon": "http://img.kaiyanapp.com/fa20228bc5b921e837156923a58713f6.png",
-            "alias": "youtube"
-          },
-          "id": 154579,
-          "descriptionPgc": null,
-          "titlePgc": null,
-          "adTrack": [],
-          "subtitles": [],
-          "ad": false,
-          "src": 11,
-          "author": {
-            "shield": {
-              "itemId": 4313,
-              "itemType": "author",
-              "shielded": false
-            },
-            "expert": false,
-            "approvedNotReadyVideoCount": 0,
-            "icon": "http://img.kaiyanapp.com/02676483997307b5d4509f7d0a1c9a68.jpeg?imageMogr2/quality/60/format/jpg",
-            "link": "",
-            "description": "我无法帮你成功，但我能帮你停止堕落",
-            "videoNum": 121,
-            "follow": {
-              "itemId": 4313,
-              "itemType": "author",
-              "followed": false
-            },
-            "recSort": 0,
-            "name": "人生指导师 Ben Lionel Scott",
-            "ifPgc": true,
-            "latestReleaseTime": 1589904025000,
-            "id": 4313,
-            "adTrack": null
-          },
-          "dataType": "VideoBeanForClient",
-          "searchWeight": 0,
-          "playlists": null,
-          "consumption": {
-            "shareCount": 2269,
-            "replyCount": 37,
-            "realCollectionCount": 547,
-            "collectionCount": 7366
-          },
-          "reallyCollected": false,
-          "label": null,
-          "played": false,
-          "tags": [
-            {
-              "actionUrl": "eyepetizer://tag/863/?title=%E7%94%9F%E6%B4%BB%E4%BD%9C%E5%BC%8A%E6%8C%87%E5%8D%97",
-              "childTagList": null,
-              "bgPicture": "http://img.kaiyanapp.com/737e112b2d4d21b3d3d0e07afe31b6f4.jpeg?imageMogr2/quality/60/format/jpg",
-              "haveReward": false,
-              "childTagIdList": null,
-              "tagRecType": "NORMAL",
-              "ifNewest": false,
-              "headerImage": "http://img.kaiyanapp.com/737e112b2d4d21b3d3d0e07afe31b6f4.jpeg?imageMogr2/quality/60/format/jpg",
-              "name": "生活作弊指南",
-              "communityIndex": 0,
-              "id": 863,
-              "adTrack": null,
-              "desc": null,
-              "newestEndTime": null
-            },
-            {
-              "actionUrl": "eyepetizer://tag/482/?title=%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F",
-              "childTagList": null,
-              "bgPicture": "http://img.kaiyanapp.com/31f217a0db54b356fb709f08732c5e06.jpeg?imageMogr2/quality/60/format/jpg",
-              "haveReward": false,
-              "childTagIdList": null,
-              "tagRecType": "NORMAL",
-              "ifNewest": false,
-              "headerImage": "http://img.kaiyanapp.com/31f217a0db54b356fb709f08732c5e06.jpeg?imageMogr2/quality/60/format/jpg",
-              "name": "人生感悟",
-              "communityIndex": 0,
-              "id": 482,
-              "adTrack": null,
-              "desc": null,
-              "newestEndTime": null
-            },
-            {
-              "actionUrl": "eyepetizer://tag/666/?title=%E7%94%9F%E6%B4%BB",
-              "childTagList": null,
-              "bgPicture": "http://img.kaiyanapp.com/95ba262a92ac99db76794ca56233d5d1.jpeg?imageMogr2/quality/60/format/jpg",
-              "haveReward": false,
-              "childTagIdList": null,
-              "tagRecType": "NORMAL",
-              "ifNewest": false,
-              "headerImage": "http://img.kaiyanapp.com/314a1e399de4c5708058e7f391619647.jpeg?imageMogr2/quality/60/format/jpg",
-              "name": "生活",
-              "communityIndex": 0,
-              "id": 666,
-              "adTrack": null,
-              "desc": "匠心、健康、生活感悟",
-              "newestEndTime": null
-            },
-            {
-              "actionUrl": "eyepetizer://tag/729/?title=%E7%94%9F%E6%B4%BB%E6%96%B9%E5%BC%8F",
-              "childTagList": null,
-              "bgPicture": "http://img.kaiyanapp.com/df0ad616931c3c08b6775b8be5f418fa.gif",
-              "haveReward": false,
-              "childTagIdList": null,
-              "tagRecType": "NORMAL",
-              "ifNewest": false,
-              "headerImage": "http://img.kaiyanapp.com/df0ad616931c3c08b6775b8be5f418fa.gif",
-              "name": "生活方式",
-              "communityIndex": 0,
-              "id": 729,
-              "adTrack": null,
-              "desc": "在生活里找到理想的自己",
-              "newestEndTime": null
-            }
-          ],
-          "webAdTrack": null,
-          "labelList": [],
-          "lastViewTime": null,
-          "playInfo": [
-            {
-              "width": 480,
-              "name": "流畅",
-              "urlList": [
-                {
-                  "size": 6398759,
-                  "name": "aliyun",
-                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=low&source=aliyun&playUrlType=url_oss"
-                },
-                {
-                  "size": 6398759,
-                  "name": "ucloud",
-                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=low&source=ucloud&playUrlType=url_oss"
-                }
-              ],
-              "type": "low",
-              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=low&source=aliyun&playUrlType=url_oss",
-              "height": 270
-            },
-            {
-              "width": 854,
-              "name": "标清",
-              "urlList": [
-                {
-                  "size": 12963782,
-                  "name": "aliyun",
-                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=normal&source=aliyun&playUrlType=url_oss"
-                },
-                {
-                  "size": 12963782,
-                  "name": "ucloud",
-                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=normal&source=ucloud&playUrlType=url_oss"
-                }
-              ],
-              "type": "normal",
-              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=normal&source=aliyun&playUrlType=url_oss",
-              "height": 480
-            },
-            {
-              "width": 1280,
-              "name": "高清",
-              "urlList": [
-                {
-                  "size": 20490759,
-                  "name": "aliyun",
-                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss"
-                },
-                {
-                  "size": 20490759,
-                  "name": "ucloud",
-                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=high&source=ucloud&playUrlType=url_oss"
-                }
-              ],
-              "type": "high",
-              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=154579&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss",
-              "height": 720
-            }
-          ],
-          "ifLimitVideo": false,
-          "webUrl": {
-            "forWeibo": "http://www.eyepetizer.net/detail.html?vid=154579&resourceType=video&utm_campaign=routine&utm_medium=share&utm_source=weibo&uid=0",
-            "raw": "http://www.eyepetizer.net/detail.html?vid=154579"
-          },
-          "campaign": null,
-          "category": "生活",
-          "idx": 0,
-          "slogan": "明日复明日，你到底什么时候开始做",
-          "thumbPlayUrl": null,
-          "resourceType": "video",
-          "promotion": null
-        },
-        "adIndex": -1,
-        "tag": null,
-        "id": 0,
-        "type": "videoSmallCard"
-      },
-      {
-        "data": {
           "date": 1565884871000,
           "shareAdTrack": null,
           "releaseTime": 1565884871000,
@@ -1077,6 +842,209 @@ const jsonArr = [
           },
           "campaign": null,
           "category": "科技",
+          "idx": 0,
+          "slogan": null,
+          "thumbPlayUrl": null,
+          "resourceType": "video",
+          "promotion": null
+        },
+        "adIndex": -1,
+        "tag": null,
+        "id": 0,
+        "type": "videoSmallCard"
+      },
+      {
+        "data": {
+          "date": 1533543570000,
+          "shareAdTrack": null,
+          "releaseTime": 1533543570000,
+          "brandWebsiteInfo": null,
+          "description": "博美 MUJI 和加菲 Mumaru 一起来到了清迈度假。喵星人和汪星人一起坐在秋千上，Mumaru 一直试图把头放在 MUJI 身上，一副岁月静好的画面。",
+          "remark": null,
+          "collected": false,
+          "title": "MUJI 和 Mumaru 的清迈放松之旅",
+          "type": "NORMAL",
+          "favoriteAdTrack": null,
+          "recallSource": "",
+          "waterMarks": null,
+          "playUrl": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss",
+          "cover": {
+            "feed": "http://img.kaiyanapp.com/5ba20a37f8085b3baae642457332afae.jpeg?imageMogr2/quality/60/format/jpg",
+            "detail": "http://img.kaiyanapp.com/5ba20a37f8085b3baae642457332afae.jpeg?imageMogr2/quality/60/format/jpg",
+            "sharing": null,
+            "blurred": "http://img.kaiyanapp.com/aec72b0e503b717f45308fdebc90d623.jpeg?imageMogr2/quality/60/format/jpg",
+            "homepage": null
+          },
+          "duration": 105,
+          "library": "DEFAULT",
+          "descriptionEditor": "",
+          "provider": {
+            "name": "定制来源",
+            "icon": "",
+            "alias": "CustomSrc"
+          },
+          "id": 119602,
+          "descriptionPgc": "博美 MUJI 和加菲 Mumaru 一起来到了清迈度假。喵星人和汪星人一起坐在秋千上，Mumaru 一直试图把头放在 MUJI 身上，一副岁月静好的画面。",
+          "titlePgc": "MUJI 和 Mumaru 的清迈放松之旅",
+          "adTrack": null,
+          "subtitles": [],
+          "ad": false,
+          "src": 11,
+          "author": {
+            "shield": {
+              "itemId": 1489,
+              "itemType": "author",
+              "shielded": false
+            },
+            "expert": false,
+            "approvedNotReadyVideoCount": 0,
+            "icon": "http://img.kaiyanapp.com/1e150429338de4afd08abb79c7d30464.jpeg?imageMogr2/quality/60/format/jpg",
+            "link": "",
+            "description": "我是一只奶油色博美犬，名字叫MUJI，居住在泰国。",
+            "videoNum": 56,
+            "follow": {
+              "itemId": 1489,
+              "itemType": "author",
+              "followed": false
+            },
+            "recSort": 0,
+            "name": "MUJI SAMA奶油博美犬",
+            "ifPgc": true,
+            "latestReleaseTime": 1535188795000,
+            "id": 1489,
+            "adTrack": null
+          },
+          "dataType": "VideoBeanForClient",
+          "searchWeight": 0,
+          "playlists": null,
+          "consumption": {
+            "shareCount": 70,
+            "replyCount": 0,
+            "realCollectionCount": 6,
+            "collectionCount": 41
+          },
+          "reallyCollected": false,
+          "label": null,
+          "played": false,
+          "tags": [
+            {
+              "actionUrl": "eyepetizer://tag/751/?title=%E8%B6%85%E8%90%8C%E5%8A%A8%E7%89%A9%E5%9C%A8%E5%93%AA%E9%87%8C",
+              "childTagList": null,
+              "bgPicture": "http://img.kaiyanapp.com/9b3846ea47ba8916b19e4cf2b9c17e78.jpeg?imageMogr2/quality/60/format/jpg",
+              "haveReward": false,
+              "childTagIdList": null,
+              "tagRecType": "NORMAL",
+              "ifNewest": false,
+              "headerImage": "http://img.kaiyanapp.com/9b3846ea47ba8916b19e4cf2b9c17e78.jpeg?imageMogr2/quality/60/format/jpg",
+              "name": "超萌动物在哪里",
+              "communityIndex": 0,
+              "id": 751,
+              "adTrack": null,
+              "desc": null,
+              "newestEndTime": null
+            },
+            {
+              "actionUrl": "eyepetizer://tag/174/?title=%E6%B2%BB%E6%84%88",
+              "childTagList": null,
+              "bgPicture": "http://img.kaiyanapp.com/5417e0d8f72d7bb3f1cd69eb75b0759e.jpeg?imageMogr2/quality/60",
+              "haveReward": false,
+              "childTagIdList": null,
+              "tagRecType": "NORMAL",
+              "ifNewest": false,
+              "headerImage": "http://img.kaiyanapp.com/5417e0d8f72d7bb3f1cd69eb75b0759e.jpeg?imageMogr2/quality/60",
+              "name": "治愈",
+              "communityIndex": 0,
+              "id": 174,
+              "adTrack": null,
+              "desc": null,
+              "newestEndTime": null
+            },
+            {
+              "actionUrl": "eyepetizer://tag/32/?title=%E8%90%8C%E5%AE%A0",
+              "childTagList": null,
+              "bgPicture": "http://img.kaiyanapp.com/bd689302a738a5d2156243a2b74f15d1.png?imageMogr2/quality/60/format/jpg",
+              "haveReward": false,
+              "childTagIdList": null,
+              "tagRecType": "NORMAL",
+              "ifNewest": false,
+              "headerImage": "http://img.kaiyanapp.com/1ea685a0d2757701741a4a9be0f7e269.jpeg?imageMogr2/quality/60/format/jpg",
+              "name": "萌宠",
+              "communityIndex": 0,
+              "id": 32,
+              "adTrack": null,
+              "desc": "来自汪星、喵星、蠢萌星的你",
+              "newestEndTime": null
+            }
+          ],
+          "webAdTrack": null,
+          "labelList": [],
+          "lastViewTime": null,
+          "playInfo": [
+            {
+              "width": 480,
+              "name": "流畅",
+              "urlList": [
+                {
+                  "size": 4417387,
+                  "name": "aliyun",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=low&source=aliyun&playUrlType=url_oss"
+                },
+                {
+                  "size": 4417387,
+                  "name": "ucloud",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=low&source=ucloud&playUrlType=url_oss"
+                }
+              ],
+              "type": "low",
+              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=low&source=aliyun&playUrlType=url_oss",
+              "height": 270
+            },
+            {
+              "width": 854,
+              "name": "标清",
+              "urlList": [
+                {
+                  "size": 9680008,
+                  "name": "aliyun",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=normal&source=aliyun&playUrlType=url_oss"
+                },
+                {
+                  "size": 9680008,
+                  "name": "ucloud",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=normal&source=ucloud&playUrlType=url_oss"
+                }
+              ],
+              "type": "normal",
+              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=normal&source=aliyun&playUrlType=url_oss",
+              "height": 480
+            },
+            {
+              "width": 1280,
+              "name": "高清",
+              "urlList": [
+                {
+                  "size": 14944465,
+                  "name": "aliyun",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss"
+                },
+                {
+                  "size": 14944465,
+                  "name": "ucloud",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=high&source=ucloud&playUrlType=url_oss"
+                }
+              ],
+              "type": "high",
+              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=119602&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss",
+              "height": 720
+            }
+          ],
+          "ifLimitVideo": false,
+          "webUrl": {
+            "forWeibo": "http://www.eyepetizer.net/detail.html?vid=119602&resourceType=video&utm_campaign=routine&utm_medium=share&utm_source=weibo&uid=0",
+            "raw": "http://www.eyepetizer.net/detail.html?vid=119602"
+          },
+          "campaign": null,
+          "category": "萌宠",
           "idx": 0,
           "slogan": null,
           "thumbPlayUrl": null,
@@ -2173,22 +2141,6 @@ const jsonArr = [
     "code": 200,
     "message": "成功!",
     "result": [
-      {
-        "data": {
-          "subTitle": null,
-          "dataType": "TextCard",
-          "actionUrl": "",
-          "id": 0,
-          "text": "相关推荐",
-          "type": "header4",
-          "follow": null,
-          "adTrack": null
-        },
-        "adIndex": -1,
-        "tag": null,
-        "id": 0,
-        "type": "textCard"
-      },
       {
         "data": {
           "date": 1584493228000,
@@ -4191,22 +4143,6 @@ const jsonArr = [
     "result": [
       {
         "data": {
-          "subTitle": null,
-          "dataType": "TextCard",
-          "actionUrl": "",
-          "id": 0,
-          "text": "相关推荐",
-          "type": "header4",
-          "follow": null,
-          "adTrack": null
-        },
-        "adIndex": -1,
-        "tag": null,
-        "id": 0,
-        "type": "textCard"
-      },
-      {
-        "data": {
           "date": 1590040260000,
           "shareAdTrack": null,
           "releaseTime": 1590040260000,
@@ -5825,22 +5761,6 @@ const jsonArr = [
     "code": 200,
     "message": "成功!",
     "result": [
-      {
-        "data": {
-          "subTitle": null,
-          "dataType": "TextCard",
-          "actionUrl": "",
-          "id": 0,
-          "text": "相关推荐",
-          "type": "header4",
-          "follow": null,
-          "adTrack": null
-        },
-        "adIndex": -1,
-        "tag": null,
-        "id": 0,
-        "type": "textCard"
-      },
       {
         "data": {
           "date": 1566230473000,
@@ -7575,6 +7495,225 @@ const jsonArr = [
       },
       {
         "data": {
+          "date": 1555948826000,
+          "shareAdTrack": null,
+          "releaseTime": 1555948826000,
+          "brandWebsiteInfo": null,
+          "description": "买辆自行车，从明天开始骑车上下班吧～",
+          "remark": null,
+          "collected": false,
+          "title": "5 步教你如何选择通勤用的自行车",
+          "type": "NORMAL",
+          "favoriteAdTrack": null,
+          "recallSource": "",
+          "waterMarks": null,
+          "playUrl": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=default&source=aliyun&playUrlType=url_oss",
+          "cover": {
+            "feed": "http://img.kaiyanapp.com/f0c6104b232924bd56552a66b9d7740d.jpeg?imageMogr2/quality/60/format/jpg",
+            "detail": "http://img.kaiyanapp.com/f0c6104b232924bd56552a66b9d7740d.jpeg?imageMogr2/quality/60/format/jpg",
+            "sharing": null,
+            "blurred": "http://img.kaiyanapp.com/b5d168204adf1bcfac723783ee7cbec1.jpeg?imageMogr2/quality/60/format/jpg",
+            "homepage": "http://img.kaiyanapp.com/f0c6104b232924bd56552a66b9d7740d.jpeg?imageView2/1/w/720/h/560/format/jpg/q/75|watermark/1/image/aHR0cDovL2ltZy5rYWl5YW5hcHAuY29tL2JsYWNrXzMwLnBuZw==/dissolve/100/gravity/Center/dx/0/dy/0|imageslim"
+          },
+          "duration": 135,
+          "library": "DEFAULT",
+          "descriptionEditor": "买辆自行车，从明天开始骑车上下班吧～",
+          "provider": {
+            "name": "YouTube",
+            "icon": "http://img.kaiyanapp.com/fa20228bc5b921e837156923a58713f6.png",
+            "alias": "youtube"
+          },
+          "id": 157693,
+          "descriptionPgc": null,
+          "titlePgc": null,
+          "adTrack": [],
+          "subtitles": [],
+          "ad": false,
+          "src": 11,
+          "author": {
+            "shield": {
+              "itemId": 3390,
+              "itemType": "author",
+              "shielded": false
+            },
+            "expert": false,
+            "approvedNotReadyVideoCount": 0,
+            "icon": "http://img.kaiyanapp.com/de89d449b4015338b769a2eb96ddd737.png?imageMogr2/quality/60/format/jpg",
+            "link": "",
+            "description": "带你看遍世界牛人和他们不可思议的生活！",
+            "videoNum": 626,
+            "follow": {
+              "itemId": 3390,
+              "itemType": "author",
+              "followed": false
+            },
+            "recSort": 0,
+            "name": "创意生活精选",
+            "ifPgc": true,
+            "latestReleaseTime": 1589817607000,
+            "id": 3390,
+            "adTrack": null
+          },
+          "dataType": "VideoBeanForClient",
+          "searchWeight": 0,
+          "playlists": null,
+          "consumption": {
+            "shareCount": 64,
+            "replyCount": 0,
+            "realCollectionCount": 0,
+            "collectionCount": 112
+          },
+          "reallyCollected": false,
+          "label": null,
+          "played": false,
+          "tags": [
+            {
+              "actionUrl": "eyepetizer://tag/288/?title=%E8%87%AA%E8%A1%8C%E8%BD%A6",
+              "childTagList": null,
+              "bgPicture": "http://img.kaiyanapp.com/3eeccd1d60d39c41e6057ba8cb35b456.png?imageMogr2/quality/60/format/jpg",
+              "haveReward": false,
+              "childTagIdList": null,
+              "tagRecType": "NORMAL",
+              "ifNewest": false,
+              "headerImage": "http://img.kaiyanapp.com/3eeccd1d60d39c41e6057ba8cb35b456.png?imageMogr2/quality/60/format/jpg",
+              "name": "自行车",
+              "communityIndex": 0,
+              "id": 288,
+              "adTrack": null,
+              "desc": null,
+              "newestEndTime": null
+            },
+            {
+              "actionUrl": "eyepetizer://tag/1022/?title=%E8%BF%90%E5%8A%A8",
+              "childTagList": null,
+              "bgPicture": "http://img.kaiyanapp.com/cb87116785473e4064687036b53b5af3.jpeg?imageMogr2/quality/60/format/jpg",
+              "haveReward": false,
+              "childTagIdList": null,
+              "tagRecType": "NORMAL",
+              "ifNewest": false,
+              "headerImage": "http://img.kaiyanapp.com/481837cc0b1c52a3a87d6156d52cfdfa.jpeg?imageMogr2/quality/60/format/jpg",
+              "name": "运动",
+              "communityIndex": 0,
+              "id": 1022,
+              "adTrack": null,
+              "desc": "冲浪、滑板、健身、跑酷，我过着停不下来的生活",
+              "newestEndTime": null
+            },
+            {
+              "actionUrl": "eyepetizer://tag/863/?title=%E7%94%9F%E6%B4%BB%E4%BD%9C%E5%BC%8A%E6%8C%87%E5%8D%97",
+              "childTagList": null,
+              "bgPicture": "http://img.kaiyanapp.com/737e112b2d4d21b3d3d0e07afe31b6f4.jpeg?imageMogr2/quality/60/format/jpg",
+              "haveReward": false,
+              "childTagIdList": null,
+              "tagRecType": "NORMAL",
+              "ifNewest": false,
+              "headerImage": "http://img.kaiyanapp.com/737e112b2d4d21b3d3d0e07afe31b6f4.jpeg?imageMogr2/quality/60/format/jpg",
+              "name": "生活作弊指南",
+              "communityIndex": 0,
+              "id": 863,
+              "adTrack": null,
+              "desc": null,
+              "newestEndTime": null
+            },
+            {
+              "actionUrl": "eyepetizer://tag/666/?title=%E7%94%9F%E6%B4%BB",
+              "childTagList": null,
+              "bgPicture": "http://img.kaiyanapp.com/95ba262a92ac99db76794ca56233d5d1.jpeg?imageMogr2/quality/60/format/jpg",
+              "haveReward": false,
+              "childTagIdList": null,
+              "tagRecType": "NORMAL",
+              "ifNewest": false,
+              "headerImage": "http://img.kaiyanapp.com/314a1e399de4c5708058e7f391619647.jpeg?imageMogr2/quality/60/format/jpg",
+              "name": "生活",
+              "communityIndex": 0,
+              "id": 666,
+              "adTrack": null,
+              "desc": "匠心、健康、生活感悟",
+              "newestEndTime": null
+            }
+          ],
+          "webAdTrack": null,
+          "labelList": [],
+          "lastViewTime": null,
+          "playInfo": [
+            {
+              "width": 480,
+              "name": "流畅",
+              "urlList": [
+                {
+                  "size": 5809909,
+                  "name": "aliyun",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=low&source=aliyun&playUrlType=url_oss"
+                },
+                {
+                  "size": 5809909,
+                  "name": "ucloud",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=low&source=ucloud&playUrlType=url_oss"
+                }
+              ],
+              "type": "low",
+              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=low&source=aliyun&playUrlType=url_oss",
+              "height": 270
+            },
+            {
+              "width": 854,
+              "name": "标清",
+              "urlList": [
+                {
+                  "size": 12282555,
+                  "name": "aliyun",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=normal&source=aliyun&playUrlType=url_oss"
+                },
+                {
+                  "size": 12282555,
+                  "name": "ucloud",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=normal&source=ucloud&playUrlType=url_oss"
+                }
+              ],
+              "type": "normal",
+              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=normal&source=aliyun&playUrlType=url_oss",
+              "height": 480
+            },
+            {
+              "width": 1280,
+              "name": "高清",
+              "urlList": [
+                {
+                  "size": 21728920,
+                  "name": "aliyun",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss"
+                },
+                {
+                  "size": 21728920,
+                  "name": "ucloud",
+                  "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=high&source=ucloud&playUrlType=url_oss"
+                }
+              ],
+              "type": "high",
+              "url": "http://baobab.kaiyanapp.com/api/v1/playUrl?vid=157693&resourceType=video&editionType=high&source=aliyun&playUrlType=url_oss",
+              "height": 720
+            }
+          ],
+          "ifLimitVideo": false,
+          "webUrl": {
+            "forWeibo": "http://www.eyepetizer.net/detail.html?vid=157693&resourceType=video&utm_campaign=routine&utm_medium=share&utm_source=weibo&uid=0",
+            "raw": "http://www.eyepetizer.net/detail.html?vid=157693"
+          },
+          "campaign": null,
+          "category": "生活",
+          "idx": 0,
+          "slogan": null,
+          "thumbPlayUrl": null,
+          "resourceType": "video",
+          "promotion": null
+        },
+        "adIndex": -1,
+        "tag": null,
+        "id": 0,
+        "type": "videoSmallCard"
+      },
+      {
+        "data": {
           "date": 1565026500000,
           "shareAdTrack": null,
           "releaseTime": 1565026500000,
@@ -7798,22 +7937,6 @@ const jsonArr = [
     "code": 200,
     "message": "成功!",
     "result": [
-      {
-        "data": {
-          "subTitle": null,
-          "dataType": "TextCard",
-          "actionUrl": "",
-          "id": 0,
-          "text": "相关推荐",
-          "type": "header4",
-          "follow": null,
-          "adTrack": null
-        },
-        "adIndex": -1,
-        "tag": null,
-        "id": 0,
-        "type": "textCard"
-      },
       {
         "data": {
           "date": 1587484899000,
@@ -9894,22 +10017,6 @@ const jsonArr = [
     "code": 200,
     "message": "成功!",
     "result": [
-      {
-        "data": {
-          "subTitle": null,
-          "dataType": "TextCard",
-          "actionUrl": "",
-          "id": 0,
-          "text": "相关推荐",
-          "type": "header4",
-          "follow": null,
-          "adTrack": null
-        },
-        "adIndex": -1,
-        "tag": null,
-        "id": 0,
-        "type": "textCard"
-      },
       {
         "data": {
           "date": 1590076867000,

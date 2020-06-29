@@ -1,6 +1,5 @@
 import Taro, {Component} from '@tarojs/taro'
 import { Dimensions, ActivityIndicator } from 'react-native'
-import { View, Text } from 'native-base'
 
 const { width, height } = Dimensions.get('window')
 

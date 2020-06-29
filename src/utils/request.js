@@ -4,6 +4,7 @@ import { md5 } from './md5.js'
 import '@tarojs/async-await'
 import { jsonArr } from '@utils/mock-index'
 import { jsonDetail } from '@utils/mock-detail'
+import Utils from '@utils/index'
 
 //定义const类型方法变量request，否则无法export
 const request = async (options) => {
@@ -12,7 +13,7 @@ const request = async (options) => {
   let res
   try {
     if(mock){
-      res =  resMock(options)
+      res = await resMock(options)
       console.log(res)
     }else {
       res = await Taro.request(options)
@@ -38,9 +39,10 @@ const request = async (options) => {
   }
 }
 
-function resMock(options){
+async function resMock(options){
   if(options.url.indexOf('/videoRecommend') > -1){
-    let index = Math.floor(Math.random()*10+1)%5
+    let index = Math.floor(Math.random()*10+1)%5//随机返回十条数据
+    await Utils.timeout(1000)//模拟网络延迟
     return {
       statusCode:200,
       data:jsonArr[index]
