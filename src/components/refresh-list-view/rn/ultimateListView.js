@@ -51,13 +51,13 @@ export default class UltimateListView extends Component {
     customRefreshControl: null,
 
     // Advanced RefreshView
-    refreshableTitlePull: 'Pull to refresh',
-    refreshableTitleRefreshing: 'Loading...',
-    refreshableTitleRelease: 'Release to load',
+    refreshableTitlePull: '下拉可以刷新',
+    refreshableTitleRefreshing: '正在刷新...',
+    refreshableTitleRelease: '释放立即刷新',
     customRefreshView: null,
     displayDate: false,
     dateFormat: 'yyyy-MM-dd hh:mm',
-    dateTitle: 'Last updated: ',
+    dateTitle: '上次更新: ',
     arrowImageSource: require('./downArrow.png'),
     arrowImageStyle: undefined,
     refreshViewStyle: undefined,
@@ -67,16 +67,16 @@ export default class UltimateListView extends Component {
     // Pagination
     pagination: true,
     autoPagination: true,
-    allLoadedText: 'End of List',
+    allLoadedText: '没有更多了',
 
     // Spinner
     spinnerColor: undefined,
     fetchingSpinnerSize: 'large',
     waitingSpinnerSize: 'small',
-    waitingSpinnerText: 'Loading...',
+    waitingSpinnerText: '加载中...',
 
     // Pagination Button
-    paginationBtnText: 'Load more...',
+    paginationBtnText: '加载更多中...',
 
     // GridView
     numColumns: 1
@@ -281,6 +281,7 @@ export default class UltimateListView extends Component {
   }
 
   updateDataSource(rows = []) {
+    console.log('updateDataSource',rows.slice())
     this.setRows(rows)
     this.setState({
       dataSource: rows

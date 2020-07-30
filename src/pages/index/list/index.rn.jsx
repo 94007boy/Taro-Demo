@@ -11,6 +11,7 @@ const scrollWarp = {
 }
 import {UltimateListView} from '@components/refresh-list-view'
 import LoadingSpinner from "../loadingSpinner";
+import TabBar from "../tab-bar";
 
 @inject('appMod')
 @inject('indexMod')
@@ -34,7 +35,6 @@ export default class List extends PureComponent {
    * @param nextProps
    */
   componentWillReceiveProps(nextProps) {
-
   }
 
   /**
@@ -45,10 +45,14 @@ export default class List extends PureComponent {
    * @param nextState
    */
   componentWillUpdate(nextProps, nextState) {
-    if(nextProps.currentId != this.props.currentId){
-      Taro.showLoading({title: '加载中...', mask: true})
-      this.listView.refresh()
-      this.listView.scrollToIndex({viewPosition: 0, index: 0})
+    if(nextProps.datas != this.props.datas){
+      this.updateDataSource()
+      try {
+        if(!nextProps.hasTabCached)this.listView.scrollToIndex({viewPosition: 0, index: 0})
+      }catch (e) {
+
+      }
+
     }
   }
 
@@ -58,7 +62,7 @@ export default class List extends PureComponent {
     try{
       await indexMod.getDatas(currentId, page > 1)
       const { indexMod:{currentDatas}  } = this.props
-      startFetch(currentDatas.slice(), 10)
+      startFetch(currentDatas, 10)
     }catch (err) {
       abortFetch() // manually stop the refresh or pagination if it encounters network error
       console.log(err)
@@ -69,9 +73,21 @@ export default class List extends PureComponent {
     <LoadingSpinner height={height * 0.2} text="加载中..."/>
   )
 
+  onFollowClick(index,active,name) {
+    const {indexMod} = this.props
+    indexMod.setFollowState(index, !active)
+    Taro.showToast({title: (active?'取消关注':'已关注')+name ,icon:'none'});
+    this.updateDataSource()
+  }
+
+  updateDataSource(){
+    const { indexMod: { currentDatas } } = this.props
+    this.listView.updateDataSource(currentDatas)
+  }
+
   renderItem = (item, index, separator) => {
     return (
-      <Item item={item} index={index} key={index}/>
+      <Item item={item} index={index} key={index} onFollowClick={this.onFollowClick.bind(this)}/>
     )
   }
 

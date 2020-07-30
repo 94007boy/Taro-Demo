@@ -9,7 +9,7 @@ let coverHeight = Math.floor(getWindowWidth() * 0.56)
 if(process.env.TARO_ENV !== 'rn')coverHeight += 'px'//动态样式RN端不能加px
 import {observer, inject} from '@tarojs/mobx'
 
-@inject('appMod')
+@inject('indexMod')
 @observer
 export default class Item extends PureComponent {
 
@@ -19,9 +19,7 @@ export default class Item extends PureComponent {
 
   onFollowClick(index,active,name,e) {//事件对象 e 要放在最后
     e.stopPropagation()//阻止事件冒泡
-    const {indexMod} = this.props
-    indexMod.setFollowState(index, !active)
-    Taro.showToast({title: (active?'取消关注':'已关注')+name ,icon:'none'});
+    this.props.onFollowClick(index,active,name)
   }
 
   onItemClick = (e) => {
