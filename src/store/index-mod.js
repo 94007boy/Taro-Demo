@@ -15,33 +15,80 @@ const indexMod = observable({
     {id: '194845', name: "娱乐"},
     {id: '194925', name: "动漫"}
   ],
-  currentDatas:[],
-  datas:[],
-  hasTabCached:false,//当前请求的接口数据，是否缓存过
-  action:{
-    REFRESHING:0,
-    LOADMORE:1,
-    TABCHANGE:2
+  currentDatas: [],
+  datas: [],
+  tabOffsets:[],
+  hasTabCached: false,//当前请求的接口数据，是否缓存过
+  action: {
+    REFRESHING: 0,
+    LOADMORE: 1,
+    TABCHANGE: 2
   }
 })
 
-
-
-  indexMod.setFollowState = function (index, isFollow) {
-    console.log('setFollowState',index, isFollow)
-    // this.datas = this.datas.map(item => {
-    //   if (item.id && item.id != undefined && (item.id === this.currentId)) {
-    //     item.res[index].data.author.follow.followed = isFollow
-    //   }
-    //   return item
-    // })
-    this.currentDatas[index].data.author.follow.followed = isFollow
+indexMod.updateTabOffset = function (id,offset) {
+  let hasCached = false
+  this.tabOffsets = this.tabOffsets.map(off => {
+    if(off && off.id === id){
+      hasCached = true
+      off.offset = offset
+    }
+    return off
+  })
+  if(!hasCached){
+    this.tabOffsets.push({id,offset})
   }
+  console.log('updateTabOffset',this.tabOffsets.slice())
+}
 
-  indexMod.onTabClick = function (id) {
-    this.currentId = id
-    this.getDatas(id,2)
-  }
+indexMod.getOffsetByTabId = function (id){
+  let temp = 0
+  this.tabOffsets.slice().map(off => {
+    if(off && off.id === id){
+      temp = off.offset
+    }
+  })
+  return temp
+}
+
+indexMod.setFollowState = function (index, isFollow) {
+  console.log('setFollowState', index, isFollow)
+  this.datas = this.datas.map(item => {
+    if (item && item.id === this.currentId) {
+      item.res[index].data.author.follow.followed = isFollow
+    }
+    return item
+  })
+  this.currentDatas[index].data.author.follow.followed = isFollow
+}
+
+indexMod.onTabClick = function (id) {
+  this.currentId = id
+  // this.getDatas(id,2)
+}
+
+//是否有缓存
+indexMod.checkTabCached = function (id) {
+  let cached = false
+  this.datas.slice().map(item => {
+    if (item && item.id === id) {
+      cached = true
+    }
+  })
+  return cached
+}
+
+//返回缓存的数据
+indexMod.getCachedTabData = function (id) {
+  let datas = []
+  this.datas.slice().map(item => {
+    if (item && item.id === id) {
+      datas = item.res
+    }
+  })
+  this.currentDatas = datas
+  return datas
+}
 
 /**
  * 请求数据
@@ -49,57 +96,41 @@ const indexMod = observable({
  * @param action 手势动作 0下拉刷新，1加载更多，2tab切换
  * @returns {Promise<*>}
  */
-indexMod.getDatas = async function (id, action) {
-    let currentItem = ''
-    this.hasTabCached = false
-    if(action === this.action.TABCHANGE){//切换tab
-      this.datas.slice().map(item => {
-        console.log('getDatas - cache',id,item.id)
-        if (item && item.id === id) {
-          this.hasTabCached = true
-          currentItem = item
-        }
-      })
-
-      if(this.hasTabCached){//检查当前tab数据是否缓存过
-        this.currentDatas = currentItem.res
-        return
+indexMod.getDatas = async function (id, action = this.action.TABCHANGE) {
+  let res = []
+  console.log('Serv.getVideos', 'xxxxxxxxxx')
+  let datas = await Serv.getVideos(id)
+  //对源数据进行加工，以符合页面字段显示
+  datas.map(data => {
+    if (data && data.type === 'videoSmallCard' && data.data.author) {
+      if (data.data.author.name.length > 8) {
+        data.data.author.name = data.data.author.name.substr(0, 8)
       }
-      this.isLoading = true//没有缓存，则请求接口
+      if (data.data.duration) {
+        data.data.duration = Utils.formatDuration(data.data.duration)
+      }
+      data.data.read = Math.floor(Math.random() * 10 + 1)
+      data.data.fans = parseInt(data.data.id / 100)
+      data.data.cmtNum = parseInt(data.data.id / 10000)
+      res.push(data)
     }
+  })
 
+  if (action === this.action.LOADMORE) {
 
-    let res = []
-    let datas = await Serv.getVideos(id)
-    //对源数据进行加工，以符合页面字段显示
-    datas.map(data => {
-      if (data && data.type === 'videoSmallCard' && data.data.author) {
-        if (data.data.author.name.length > 8) {
-          data.data.author.name = data.data.author.name.substr(0, 8)
-        }
-        if (data.data.duration) {
-          data.data.duration = Utils.formatDuration(data.data.duration)
-        }
-        data.data.read = Math.floor(Math.random() * 10 + 1)
-        data.data.fans = parseInt(data.data.id / 100)
-        data.data.cmtNum = parseInt(data.data.id / 10000)
-        res.push(data)
-      }
+  } else if (action === this.action.REFRESHING) {
+
+  } else {
+    this.datas.push({
+      id,
+      res: res
     })
-
-    if(!this.hasTabCached){
-      this.datas.push({
-        id,
-        res:res
-      })
-    }else {
-      currentItem.res = res//数据替换
-    }
-    this.currentDatas = res
-    this.isLoading = false
-    if(action === this.action.REFRESHING){//刷新时，请求完成需要隐藏loading框
-      Taro.hideLoading()
-    }
   }
+  this.currentDatas = res
+  this.isLoading = false
+  if (action === this.action.REFRESHING) {//刷新时，请求完成需要隐藏loading框
+    Taro.hideLoading()
+  }
+}
 
 export default indexMod

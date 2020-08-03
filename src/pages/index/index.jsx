@@ -32,29 +32,25 @@ class Index extends PureComponent {
   async onTabClick(tab){
     const { indexMod } = this.props
     await indexMod.onTabClick(tab.id)
-    console.log('onTabClick <<<')
   }
 
   render () {
     console.log('index render ------')
-    const { indexMod: { tabs,isLoading,currentId,currentDatas,hasTabCached } } = this.props
-    if(isLoading){
-      Taro.showLoading({title: '加载中...', mask: true})
-    }else {
-      Taro.hideLoading()
-    }
+    const { indexMod: { tabs,currentId,hasTabCached } } = this.props
+    // if(isLoading){
+    //   Taro.showLoading({title: '加载中...', mask: true})
+    // }else {
+    //   Taro.hideLoading()
+    // }
     return (
       <View className='page'>
         <SearchBar/>
         <TabBar tabs={tabs} onTabClick={this.onTabClick.bind(this)}/>
-        {/*<Swiper>*/}
-        {/*  {tabs.map((tab, index) => {*/}
-        {/*    return (*/}
-        {/*      <List topDist={170} currentId={currentId} datas={currentDatas} hasTabCached={hasTabCached} />*/}
-        {/*    )*/}
-        {/*  })}*/}
-        {/*</Swiper>*/}
-        <List topDist={170} currentId={currentId} datas={currentDatas} hasTabCached={hasTabCached} />
+        {tabs.map((tab, index) => {
+          return(
+            tab.id === currentId && <List key={index} tabId={tab.id} topDist={170} currentId={currentId} hasTabCached={hasTabCached} />
+          )
+        })}
       </View>
     )
   }

@@ -11,6 +11,7 @@ import {
   View
 } from 'react-native'
 import RefreshableScrollView from './refreshableScrollView'
+import List from "../../../pages/index/list";
 
 const { width, height } = Dimensions.get('window')
 const PaginationStatus = {
@@ -89,6 +90,7 @@ export default class UltimateListView extends Component {
     firstLoader: PropTypes.bool,
     scrollEnabled: PropTypes.bool,
     onFetch: PropTypes.func,
+    onListReMount: PropTypes.func,
     enableEmptySections: PropTypes.bool,
 
     // Custom ListView
@@ -163,7 +165,7 @@ export default class UltimateListView extends Component {
       mounted: true
     })
     if (this.props.firstLoader) {
-      this.props.onFetch(this.getPage(), this.postRefresh, this.endFetch)
+      this.props.onFetch(this.getPage(), this.postRefresh, this.endFetch,this.updateDataSource,this.scrollToOffset)
     }
   }
 
@@ -211,6 +213,7 @@ export default class UltimateListView extends Component {
   }
 
   scrollToOffset = (option) => {
+    console.log('scrollToOffset',option)
     this._flatList.scrollToOffset(option)
   }
 
@@ -280,24 +283,25 @@ export default class UltimateListView extends Component {
     }
   }
 
-  updateDataSource(rows = []) {
-    console.log('updateDataSource',rows.slice())
-    this.setRows(rows)
+  updateDataSource = (rows = []) => {
+    console.log('UltimateListView','updateDataSource')
+    this.setRows(rows.slice())
     this.setState({
-      dataSource: rows
+      dataSource: rows.slice()
     })
   }
 
   paginationFetchingView = () => {
-    if (this.props.paginationFetchingView) {
-      return this.props.paginationFetchingView()
-    }
-
-    return (
-      <View style={styles.fetchingView}>
-        <Text style={styles.paginationViewText}>{this.props.waitingSpinnerText}</Text>
-      </View>
-    )
+    return null
+    // if (this.props.paginationFetchingView) {
+    //   return this.props.paginationFetchingView()
+    // }
+    //
+    // return (
+    //   <View style={styles.fetchingView}>
+    //     <Text style={styles.paginationViewText}>{this.props.waitingSpinnerText}</Text>
+    //   </View>
+    // )
   }
 
   paginationAllLoadedView = () => {
@@ -351,6 +355,14 @@ export default class UltimateListView extends Component {
   renderItem = ({ item, index, separators }) => {
     if (this.props.item) {
       return this.props.item(item, index, separators)
+    }
+
+    return null
+  }
+
+  onScroll = (e) => {
+    if (this.props.onScroll) {
+      return this.props.onScroll(e)
     }
 
     return null
@@ -430,7 +442,7 @@ export default class UltimateListView extends Component {
   }
 
   render() {
-    const { numColumns } = this.props
+    const { numColumns,active } = this.props
     return (
       <FlatList
         renderScrollComponent={this.renderScrollComponent}//返回一个可以滚动的组件
@@ -439,6 +451,7 @@ export default class UltimateListView extends Component {
         {...this.props}
         ref={ref => this._flatList = ref}
         data={this.state.dataSource}
+        onScroll={this.onScroll}
         renderItem={this.renderItem}
         ItemSeparatorComponent={this.renderSeparator}
         ListHeaderComponent={this.renderHeader}
@@ -452,6 +465,14 @@ export default class UltimateListView extends Component {
 }
 
 const styles = StyleSheet.create({
+  flatListShow:{
+    zIndex:1,
+    position: 'absolute'
+  },
+  flatListHide:{
+    zIndex:0,
+    position: 'absolute'
+  },
   fetchingView: {
     width,
     height,

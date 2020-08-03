@@ -111,7 +111,7 @@ export default class RefreshableScrollView extends ScrollView {
         }
       }
     } else if (y <= 5) {
-      setTimeout(() => this._scrollview.scrollTo({ x: 0, y: refreshViewHeight, animated: false }), 100)
+      setTimeout(() => {if(this._scrollview != null) this._scrollview.scrollTo({ x: 0, y: refreshViewHeight, animated: false })}, 50)
     }
     if (this.props.onScroll) {
       this.props.onScroll(event)

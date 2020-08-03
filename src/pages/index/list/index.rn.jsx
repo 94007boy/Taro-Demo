@@ -5,29 +5,24 @@ import {Dimensions, Image} from 'react-native'
 import {observer, inject} from '@tarojs/mobx'
 import Item from '../item'
 const {width, height} = Dimensions.get('window')
-const scrollWarp = {
-  position: 'absolute',
-  width: '100%'
-}
 import {UltimateListView} from '@components/refresh-list-view'
 import LoadingSpinner from "../loadingSpinner";
 import TabBar from "../tab-bar";
-
+this.currentId = ''
 @inject('appMod')
 @inject('indexMod')
 @observer
 export default class List extends PureComponent {
 
   static defaultProps = {
-    datas: []
   }
 
   constructor(props) {
     super(props)
-    const {topDist} = this.props
-    scrollWarp.top = topDist + 'px'
+    this.state = {
+      offset:0
+    }
   }
-
 
   /**
    * 在已经装载的组件接收到新属性前调用。若你需要更新状态响应属性改变，
@@ -45,22 +40,50 @@ export default class List extends PureComponent {
    * @param nextState
    */
   componentWillUpdate(nextProps, nextState) {
-    if(nextProps.datas != this.props.datas){
-      this.updateDataSource()
-      try {
-        if(!nextProps.hasTabCached)this.listView.scrollToIndex({viewPosition: 0, index: 0})
-      }catch (e) {
-
-      }
-
-    }
+    // if(nextProps.tabId === nextProps.currentId){
+    //   console.log('componentWillUpdate',nextProps.tabId)
+    // }
+    //   this.updateDataSource()
+    //   try {
+    //     if(!nextProps.hasTabCached)this.listView.scrollToIndex({viewPosition: 0, index: 0})
+    //   }catch (e) {
+    //
+    //   }
+    //
+    // }
   }
 
-  onFetch = async (page = 1, startFetch, abortFetch) => {
+  componentDidMount () {
+    const { indexMod:{currentId}  } = this.props
+    this.currentId = currentId
+    console.log('componentDidMount','currentId = '+currentId)
+  }
+
+  componentWillUnmount () {
+    const { indexMod } = this.props
+    indexMod.updateTabOffset(this.currentId,this.state.offset)
+  }
+
+  onFetch = async (page = 1, startFetch, abortFetch,updateDataSource,scrollToOffset) => {
+    console.log('List','onFetch')
     const { indexMod:{currentId}  } = this.props
     const { indexMod } = this.props
+    if(updateDataSource){
+      if(indexMod.checkTabCached(currentId)){//数据已缓存，只更新界面
+        abortFetch()
+        updateDataSource(indexMod.getCachedTabData(currentId))
+        if(scrollToOffset){
+          let offset = indexMod.getOffsetByTabId(currentId)
+          setTimeout(()=>{
+            console.log('getOffsetByTabId',currentId,offset)
+            scrollToOffset({animated: false, offset})
+          },0)
+        }
+        return
+      }
+    }
     try{
-      await indexMod.getDatas(currentId, page > 1)
+      await indexMod.getDatas(currentId)
       const { indexMod:{currentDatas}  } = this.props
       startFetch(currentDatas, 10)
     }catch (err) {
@@ -85,6 +108,11 @@ export default class List extends PureComponent {
     this.listView.updateDataSource(currentDatas)
   }
 
+  onScroll = e => {
+    const offset = e.nativeEvent.contentOffset.y
+    this.setState({offset})
+  }
+
   renderItem = (item, index, separator) => {
     return (
       <Item item={item} index={index} key={index} onFollowClick={this.onFollowClick.bind(this)}/>
@@ -101,6 +129,7 @@ export default class List extends PureComponent {
         keyExtractor={(item, index) => `${index} - ${item}`}
         refreshableMode="advanced"
         item={this.renderItem}
+        onScroll={this.onScroll}
         numColumns={1}
         displayDate
         arrowImageStyle={{width: 20, height: 20, resizeMode: 'contain'}}
