@@ -4,35 +4,51 @@ import './index.scss'
 import {observer, inject} from '@tarojs/mobx'
 import Item from '../item'
 const scrollWarp = {
-  position: 'absolute',
   width: '100%'
 }
 import {getWindowHeight} from '@utils/style'
 import loadingIcon from '@assets/icon-small-loading.gif'
 let height = 0
+import { AtLoadMore } from 'taro-ui'
 
 @inject('indexMod')
 @observer
 export default class List extends PureComponent {
 
   static defaultProps = {
-    datas:[]
   }
 
   constructor(props) {
     super(props)
-    const {topDist} = this.props
-    scrollWarp.top = topDist + 'px'
-    height = getWindowHeight(process.env.TARO_ENV === 'weapp'?true:false, topDist)
+    scrollWarp.height = getWindowHeight(process.env.TARO_ENV === 'weapp'?true:false,170)
+    this.state = {
+      datas:[]
+    }
   }
-
 
   /**
    * 在已经装载的组件接收到新属性前调用。若你需要更新状态响应属性改变，
    * 你可能需对比 this.props 和 nextProps 并在该方法中使用 this.setState() 处理状态改变。
    * @param nextProps
    */
-  componentWillReceiveProps(nextProps) {
+  async componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps',nextProps)
+    if(nextProps.index === nextProps.current){//页面可见状态
+      const { indexMod,tabId } = this.props
+      if(indexMod.checkTabCached(tabId)) {//数据已缓存，只更新界面
+        let temps = indexMod.getCachedTabData(tabId).slice()
+        console.log('使用了缓存数据',temps.length)
+        this.setState({datas:temps})
+      }else {
+        Taro.showLoading({
+          title: '加载中',
+        })
+        await indexMod.getDatas(tabId,indexMod.action.TABCHANGE)
+        const { indexMod:{currentDatas}  } = this.props
+        this.setState({datas:currentDatas.slice()})
+        Taro.hideLoading()
+      }
+    }
   }
 
   /**
@@ -46,27 +62,40 @@ export default class List extends PureComponent {
 
   }
 
-  onScrollToLower = () => {
-    const {indexMod} = this.props
-    const {datas} = this.props
-    if(datas.length && datas[datas.length - 1].data){
-      indexMod.getDatas(datas[datas.length - 1].data.id,true)
-    }
+  onScrollToLower = async() => {
+    console.log('onScrollToLower ....')
+    const { indexMod,tabId } = this.props
+    const { indexMod:{tabs}  } = this.props
+    let id;
+    do{
+      let seed = Math.floor(Math.random()*10+5) % 5;
+      id = tabs[seed].id
+    }while (id === tabId)
+    await indexMod.getDatas(id,indexMod.action.LOADMORE)
+    const { indexMod:{currentDatas}  } = this.props
+    let datasTemp = this.state.datas.concat(currentDatas.slice())
+    this.setState({datas:datasTemp})
   }
 
   onScrollToUpper= () => {
-
+    console.log('onScrollToUpper ....')
   }
 
   onTabClick(tab){
+
+  }
+
+  onFollowClick(index,active,name) {
+    const {indexMod} = this.props
+    indexMod.setFollowState(index, !active)
+    Taro.showToast({title: (active?'取消关注':'已关注')+name ,icon:'none'});
   }
 
   render() {
-    const {datas} = this.props
+    const {datas} = this.state
     return (
       <ScrollView
-        className={scrollWarp}
-        style={{height}}
+        style={scrollWarp}
         data={datas}
         scrollY
         onScrollToUpper={this.onScrollToUpper}
@@ -75,14 +104,13 @@ export default class List extends PureComponent {
         <View className='list'>
           {datas.map((item, index) => {
             return (
-              <Item item={item} index={index} key={index} />
+              <Item item={item} index={index} key={index} onFollowClick={this.onFollowClick.bind(this)} />
             )
           })}
           {datas.length > 0
-          && <View className={'list__btm'}>
-            <Text className='list__btm-txt'>正在加载中</Text>
-            <Image mode='widthFix' className='list__btm-icon' src={loadingIcon}></Image>
-          </View>}
+          && <AtLoadMore
+            status={'loading'}
+          />}
         </View>
       </ScrollView>
 

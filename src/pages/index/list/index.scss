@@ -1,4 +1,6 @@
 @import "@styles/theme.scss";
+@import "~taro-ui/dist/style/components/toast.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
 .list {
   display: flex;
   flex-direction: column;

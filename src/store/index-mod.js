@@ -27,6 +27,7 @@ const indexMod = observable({
 })
 
 indexMod.updateTabOffset = function (id,offset) {
+  console.log('updateTabOffset 离开前','currentId = '+id,'offset = '+offset)
   let hasCached = false
   this.tabOffsets = this.tabOffsets.map(off => {
     if(off && off.id === id){
@@ -38,16 +39,17 @@ indexMod.updateTabOffset = function (id,offset) {
   if(!hasCached){
     this.tabOffsets.push({id,offset})
   }
-  console.log('updateTabOffset',this.tabOffsets.slice())
 }
 
-indexMod.getOffsetByTabId = function (id){
+indexMod.getCurrentTabOffset = function (id){
   let temp = 0
   this.tabOffsets.slice().map(off => {
     if(off && off.id === id){
       temp = off.offset
+      console.log('updateTabOffset 进入页面',id,off.offset)
     }
   })
+  console.log('updateTabOffset 进入页面','currentId = '+id,'offset = '+temp)
   return temp
 }
 
@@ -64,6 +66,7 @@ indexMod.setFollowState = function (index, isFollow) {
 
 indexMod.onTabClick = function (id) {
   this.currentId = id
+  console.log('indexMod.onTabClick',id)
   // this.getDatas(id,2)
 }
 
@@ -96,9 +99,14 @@ indexMod.getCachedTabData = function (id) {
  * @param action 手势动作 0下拉刷新，1加载更多，2tab切换
  * @returns {Promise<*>}
  */
-indexMod.getDatas = async function (id, action = this.action.TABCHANGE) {
+indexMod.getDatas = async function (id,action = this.action.TABCHANGE) {
   let res = []
-  console.log('Serv.getVideos', 'xxxxxxxxxx')
+  if(action === this.action.LOADMORE){
+    do{
+      let seed = Math.floor(Math.random()*10+5) % 5;
+      id = this.tabs[seed].id
+    }while (id === this.currentId)
+  }
   let datas = await Serv.getVideos(id)
   //对源数据进行加工，以符合页面字段显示
   datas.map(data => {
@@ -117,9 +125,20 @@ indexMod.getDatas = async function (id, action = this.action.TABCHANGE) {
   })
 
   if (action === this.action.LOADMORE) {
-
+    this.datas = this.datas.slice().map(item => {
+      if (item && item.id === this.currentId) {
+        item.res = item.res.slice().concat(res)
+        console.log('LOADMORE',item.res.length)
+      }
+      return item
+    })
   } else if (action === this.action.REFRESHING) {
-
+    this.datas = this.datas.slice().map(item => {
+      if (item && item.id === id) {
+        item.res = res
+      }
+      return item
+    })
   } else {
     this.datas.push({
       id,

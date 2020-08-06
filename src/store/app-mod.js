@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import {observable} from 'mobx'
 import '@tarojs/async-await'
 

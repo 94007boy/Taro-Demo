@@ -7,50 +7,70 @@ import { observer, inject } from '@tarojs/mobx'
 import './index.scss'
 import Item from "./item";
 
+
+
+import { AtTabs, AtTabsPane } from 'taro-ui'
+
+
 @inject('appMod')
 @inject('indexMod')
 @observer
 class Index extends PureComponent {
-
-
   config = {
     navigationBarTitleText: '首页',
     disableScroll: true
   }
 
-
-
   constructor(props) {
     super(props)
+    this.state = {
+      current: -1,
+    }
   }
 
   componentDidShow () {
     const { appMod } = this.props
     appMod.init()
+    setTimeout(() => {
+      this.handleClick(0)
+    },100)
   }
 
-  async onTabClick(tab){
+  handleClick(value) {
     const { indexMod } = this.props
-    await indexMod.onTabClick(tab.id)
+    const { indexMod: { tabs } } = this.props
+    this.setState({
+      current: value
+    })
+    let tabIdTemp = 0
+    tabs.map((tab,index) => {
+      if(index == value){
+        tabIdTemp = tab.id
+      }
+    })
+    console.log('handleClick',tabIdTemp)
+    indexMod.onTabClick(tabIdTemp)
   }
 
   render () {
-    console.log('index render ------')
-    const { indexMod: { tabs,currentId,hasTabCached } } = this.props
-    // if(isLoading){
-    //   Taro.showLoading({title: '加载中...', mask: true})
-    // }else {
-    //   Taro.hideLoading()
-    // }
+    const { indexMod: { tabs } } = this.props
+    const { current } = this.state
+    console.log('render ... ',current)
+    const tabList = tabs.map(tab => {
+      return {title:tab.name}
+    })
     return (
       <View className='page'>
         <SearchBar/>
-        <TabBar tabs={tabs} onTabClick={this.onTabClick.bind(this)}/>
-        {tabs.map((tab, index) => {
-          return(
-            tab.id === currentId && <List key={index} tabId={tab.id} topDist={170} currentId={currentId} hasTabCached={hasTabCached} />
-          )
-        })}
+        <AtTabs className='tabBar' animated={false} current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
+          {tabs.map((tab,index) => {
+            return(
+              <AtTabsPane key={index} current={this.state.current} index={index} >
+                <List tabId={tab.id} index={index} current={current} />
+              </AtTabsPane>
+            )
+          })}
+        </AtTabs>
       </View>
     )
   }

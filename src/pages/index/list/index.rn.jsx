@@ -22,6 +22,7 @@ export default class List extends PureComponent {
     this.state = {
       offset:0
     }
+    this.tabId = ''
   }
 
   /**
@@ -40,52 +41,47 @@ export default class List extends PureComponent {
    * @param nextState
    */
   componentWillUpdate(nextProps, nextState) {
-    // if(nextProps.tabId === nextProps.currentId){
-    //   console.log('componentWillUpdate',nextProps.tabId)
-    // }
-    //   this.updateDataSource()
-    //   try {
-    //     if(!nextProps.hasTabCached)this.listView.scrollToIndex({viewPosition: 0, index: 0})
-    //   }catch (e) {
-    //
-    //   }
-    //
-    // }
   }
 
   componentDidMount () {
     const { indexMod:{currentId}  } = this.props
-    this.currentId = currentId
-    console.log('componentDidMount','currentId = '+currentId)
+    this.tabId = currentId
   }
 
   componentWillUnmount () {
     const { indexMod } = this.props
-    indexMod.updateTabOffset(this.currentId,this.state.offset)
+    indexMod.updateTabOffset(this.tabId,this.state.offset)
   }
 
   onFetch = async (page = 1, startFetch, abortFetch,updateDataSource,scrollToOffset) => {
-    console.log('List','onFetch')
-    const { indexMod:{currentId}  } = this.props
     const { indexMod } = this.props
+    const { indexMod:{currentId}  } = this.props
     if(updateDataSource){
-      if(indexMod.checkTabCached(currentId)){//数据已缓存，只更新界面
+      if(indexMod.checkTabCached()){//数据已缓存，只更新界面
         abortFetch()
-        updateDataSource(indexMod.getCachedTabData(currentId))
+        updateDataSource(indexMod.getCachedTabData().slice())
         if(scrollToOffset){
-          let offset = indexMod.getOffsetByTabId(currentId)
+          let offset = indexMod.getCurrentTabOffset(currentId)
           setTimeout(()=>{
-            console.log('getOffsetByTabId',currentId,offset)
-            scrollToOffset({animated: false, offset})
+            console.log('scrollToOffset 滚动到',currentId,offset)
+            scrollToOffset({animated: false, offset:parseFloat(offset)})
           },0)
         }
         return
       }
     }
+    let status
+    if(page > 1){
+      status = indexMod.action.LOADMORE
+    }else if(updateDataSource){
+      status = indexMod.action.TABCHANGE
+    }else{
+      status = indexMod.action.REFRESHING
+    }
     try{
-      await indexMod.getDatas(currentId)
+      await indexMod.getDatas(status)
       const { indexMod:{currentDatas}  } = this.props
-      startFetch(currentDatas, 10)
+      startFetch(currentDatas.slice())
     }catch (err) {
       abortFetch() // manually stop the refresh or pagination if it encounters network error
       console.log(err)
@@ -109,6 +105,7 @@ export default class List extends PureComponent {
   }
 
   onScroll = e => {
+    const { indexMod:{currentId}  } = this.props
     const offset = e.nativeEvent.contentOffset.y
     this.setState({offset})
   }

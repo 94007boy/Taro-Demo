@@ -177,6 +177,7 @@ export default class UltimateListView extends Component {
 
   onRefresh = () => {
     if (this.state.mounted) {
+      console.log('onRefresh','isRefreshing ...')
       this.setState({
         isRefreshing: true
       })
@@ -186,6 +187,7 @@ export default class UltimateListView extends Component {
   }
 
   onPaginate = () => {
+    console.log('onPaginate',this.state.paginationStatus,this.state.isRefreshing)
     if (this.state.paginationStatus !== PaginationStatus.allLoaded && !this.state.isRefreshing) {
       this.setState({ paginationStatus: PaginationStatus.waiting })
       this.props.onFetch(this.getPage() + 1, this.postPaginate, this.endFetch)
@@ -213,7 +215,6 @@ export default class UltimateListView extends Component {
   }
 
   scrollToOffset = (option) => {
-    console.log('scrollToOffset',option)
     this._flatList.scrollToOffset(option)
   }
 
@@ -229,7 +230,7 @@ export default class UltimateListView extends Component {
     this._flatList.scrollToEnd(option)
   }
 
-  postRefresh = (rows = [], pageLimit) => {
+  postRefresh = (rows = [], pageLimit = 1) => {
     if (this.state.mounted) {
       let paginationStatus = PaginationStatus.waiting
       if (rows.length < pageLimit) {
@@ -292,16 +293,15 @@ export default class UltimateListView extends Component {
   }
 
   paginationFetchingView = () => {
-    return null
-    // if (this.props.paginationFetchingView) {
-    //   return this.props.paginationFetchingView()
-    // }
-    //
-    // return (
-    //   <View style={styles.fetchingView}>
-    //     <Text style={styles.paginationViewText}>{this.props.waitingSpinnerText}</Text>
-    //   </View>
-    // )
+    if (this.props.paginationFetchingView) {
+      return this.props.paginationFetchingView()
+    }
+
+    return (
+      <View style={styles.fetchingView}>
+        <Text style={styles.paginationViewText}>{this.props.waitingSpinnerText}</Text>
+      </View>
+    )
   }
 
   paginationAllLoadedView = () => {
@@ -323,9 +323,11 @@ export default class UltimateListView extends Component {
   }
 
   paginationWaitingView = (paginateCallback) => {
+    console.log('paginationWaitingView',this.props.pagination,this.props.autoPagination)
     if (this.props.pagination) {
       if (this.props.autoPagination) {
         if (this.props.paginationWaitingView) {
+          console.log('paginationWaitingView','Callback -----')
           return this.props.paginationWaitingView(paginateCallback)
         }
 
@@ -389,7 +391,11 @@ export default class UltimateListView extends Component {
   }
 
   renderFooter = () => {
-    if (this.state.paginationStatus === PaginationStatus.firstLoad) {
+    console.log('renderFooter',this.state.paginationStatus,this.getRows().length,this.props.autoPagination)
+    if(this.state.paginationStatus === PaginationStatus.firstLoad && this.getRows().length){//缓存数据的重新载入
+      this.onPaginate()
+      return this.paginationWaitingView()
+    }else if (this.state.paginationStatus === PaginationStatus.firstLoad) {
       return this.paginationFetchingView()
     } else if (this.state.paginationStatus === PaginationStatus.waiting && this.props.autoPagination === false) {
       return this.paginationWaitingView(this.onPaginate)
