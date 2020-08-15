@@ -121,7 +121,7 @@ const config = {
     }
   },
   defineConstants: {
-    mock:false
+    mock:true
   }
 }
 

@@ -46,7 +46,6 @@ indexMod.getCurrentTabOffset = function (id){
   this.tabOffsets.slice().map(off => {
     if(off && off.id === id){
       temp = off.offset
-      console.log('updateTabOffset 进入页面',id,off.offset)
     }
   })
   console.log('updateTabOffset 进入页面','currentId = '+id,'offset = '+temp)
@@ -54,20 +53,17 @@ indexMod.getCurrentTabOffset = function (id){
 }
 
 indexMod.setFollowState = function (index, isFollow) {
-  console.log('setFollowState', index, isFollow)
   this.datas = this.datas.map(item => {
     if (item && item.id === this.currentId) {
       item.res[index].data.author.follow.followed = isFollow
     }
     return item
   })
-  this.currentDatas[index].data.author.follow.followed = isFollow
+  // this.currentDatas[index].data.author.follow.followed = isFollow
 }
 
 indexMod.onTabClick = function (id) {
   this.currentId = id
-  console.log('indexMod.onTabClick',id)
-  // this.getDatas(id,2)
 }
 
 //是否有缓存
@@ -107,7 +103,8 @@ indexMod.getDatas = async function (id,action = this.action.TABCHANGE) {
       id = this.tabs[seed].id
     }while (id === this.currentId)
   }
-  let datas = await Serv.getVideos(id)
+  console.log('Serv.getVideos >>> ',id)
+  let datas = await Serv.getVideos(id) || []
   //对源数据进行加工，以符合页面字段显示
   datas.map(data => {
     if (data && data.type === 'videoSmallCard' && data.data.author) {

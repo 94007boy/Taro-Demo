@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
-import Index from './pages/index'
+import IndexWeapp from './pages/index'
 import store from "./store";
 import './app.scss'
 
@@ -37,7 +37,7 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <Index />
+        <IndexWeapp />
       </Provider>
     )
   }

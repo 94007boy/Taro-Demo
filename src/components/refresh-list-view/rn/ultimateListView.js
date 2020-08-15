@@ -90,6 +90,7 @@ export default class UltimateListView extends Component {
     firstLoader: PropTypes.bool,
     scrollEnabled: PropTypes.bool,
     onFetch: PropTypes.func,
+    onReMount: PropTypes.func,
     onListReMount: PropTypes.func,
     enableEmptySections: PropTypes.bool,
 
@@ -119,6 +120,7 @@ export default class UltimateListView extends Component {
     refreshableTitleRefreshing: PropTypes.string,
     refreshableTitleRelease: PropTypes.string,
     customRefreshView: PropTypes.func,
+    onScrollBackTop: PropTypes.func,
     displayDate: PropTypes.bool,
     dateFormat: PropTypes.string,
     dateTitle: PropTypes.string,
@@ -155,6 +157,7 @@ export default class UltimateListView extends Component {
     this.state = {
       mounted:false,
       dataSource: [],
+      autoBackTop:true,
       isRefreshing: false,
       paginationStatus: PaginationStatus.firstLoad
     }
@@ -164,10 +167,8 @@ export default class UltimateListView extends Component {
     this.setState({
       mounted: true
     })
-    if (this.props.firstLoader) {
-      this.props.onFetch(this.getPage(), this.postRefresh, this.endFetch,this.updateDataSource,this.scrollToOffset)
-    }
   }
+
 
   componentWillUnmount() {
     this.setState({
@@ -177,7 +178,6 @@ export default class UltimateListView extends Component {
 
   onRefresh = () => {
     if (this.state.mounted) {
-      console.log('onRefresh','isRefreshing ...')
       this.setState({
         isRefreshing: true
       })
@@ -187,7 +187,6 @@ export default class UltimateListView extends Component {
   }
 
   onPaginate = () => {
-    console.log('onPaginate',this.state.paginationStatus,this.state.isRefreshing)
     if (this.state.paginationStatus !== PaginationStatus.allLoaded && !this.state.isRefreshing) {
       this.setState({ paginationStatus: PaginationStatus.waiting })
       this.props.onFetch(this.getPage() + 1, this.postPaginate, this.endFetch)
@@ -263,7 +262,7 @@ export default class UltimateListView extends Component {
     this.updateRows(mergedRows, paginationStatus)
   }
 
-  updateRows = (rows, paginationStatus) => {
+  updateRows = (rows, paginationStatus = this.state.paginationStatus) => {
     if (rows) {
       this.setRows(rows)
       this.setState({
@@ -284,11 +283,15 @@ export default class UltimateListView extends Component {
     }
   }
 
+  onScrollBackTop = () => {
+    this.setState({autoBackTop:true})
+  }
+
   updateDataSource = (rows = []) => {
-    console.log('UltimateListView','updateDataSource')
     this.setRows(rows.slice())
     this.setState({
-      dataSource: rows.slice()
+      dataSource: rows.slice(),
+      autoBackTop:false
     })
   }
 
@@ -323,11 +326,9 @@ export default class UltimateListView extends Component {
   }
 
   paginationWaitingView = (paginateCallback) => {
-    console.log('paginationWaitingView',this.props.pagination,this.props.autoPagination)
     if (this.props.pagination) {
       if (this.props.autoPagination) {
         if (this.props.paginationWaitingView) {
-          console.log('paginationWaitingView','Callback -----')
           return this.props.paginationWaitingView(paginateCallback)
         }
 
@@ -391,7 +392,6 @@ export default class UltimateListView extends Component {
   }
 
   renderFooter = () => {
-    console.log('renderFooter',this.state.paginationStatus,this.getRows().length,this.props.autoPagination)
     if(this.state.paginationStatus === PaginationStatus.firstLoad && this.getRows().length){//缓存数据的重新载入
       this.onPaginate()
       return this.paginationWaitingView()
@@ -414,15 +414,16 @@ export default class UltimateListView extends Component {
         <RefreshableScrollView
           {...props}
           insideOfUltimateListView
+          autoBackTop={this.state.autoBackTop}
           onRefresh={this.onRefresh}
-          ref={ref => this.scrollView = ref}
+          ref={ref => this._scrollView = ref}
         />
       )
     }
     return (
       <ScrollView
         {...props}
-        ref={ref => this.scrollView = ref}
+        ref={ref => this._scrollView = ref}
       />
     )
   }
@@ -459,6 +460,7 @@ export default class UltimateListView extends Component {
         data={this.state.dataSource}
         onScroll={this.onScroll}
         renderItem={this.renderItem}
+        onScrollBackTop={this.onScrollBackTop}
         ItemSeparatorComponent={this.renderSeparator}
         ListHeaderComponent={this.renderHeader}
         ListFooterComponent={this.renderFooter}
