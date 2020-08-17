@@ -45,3 +45,9 @@ button {
   flex: 1;
 }
 /*postcss-pxtransform rn eject disable*/
+.at-tabs__item--active {
+  color: #E1251B!important;
+}
+.at-tabs__item::after{
+  background-color: #E1251B !important;
+}

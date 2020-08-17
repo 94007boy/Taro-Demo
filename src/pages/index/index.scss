@@ -1,18 +1,7 @@
-@import "@styles/theme.scss";
-
 .page{
   position: relative;
   background-color: #eee;
   height: 100%;
 }
-.list-top{
-  top: 170px;
-}
-.hidden { display:none; }
-.at-tabs__item--active {
-  color: $primary-color;
-}
-.at-tabs__item-underline {
-  background-color: $primary-color;
-}
+
 

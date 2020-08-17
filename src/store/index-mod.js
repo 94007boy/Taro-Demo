@@ -27,7 +27,6 @@ const indexMod = observable({
 })
 
 indexMod.updateTabOffset = function (id,offset) {
-  console.log('updateTabOffset 离开前','currentId = '+id,'offset = '+offset)
   let hasCached = false
   this.tabOffsets = this.tabOffsets.map(off => {
     if(off && off.id === id){
@@ -48,7 +47,6 @@ indexMod.getCurrentTabOffset = function (id){
       temp = off.offset
     }
   })
-  console.log('updateTabOffset 进入页面','currentId = '+id,'offset = '+temp)
   return temp
 }
 

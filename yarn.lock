@@ -1530,9 +1530,9 @@
     csstype "^2.2.0"
 
 "@types/react@^16.7.3":
-  version "16.9.44"
-  resolved "https://r.cnpmjs.org/@types/react/download/@types/react-16.9.44.tgz#da84b179c031aef67dc92c33bd3401f1da2fa3bc"
-  integrity sha1-2oSxecAxrvZ9ySwzvTQB8dovo7w=
+  version "16.9.46"
+  resolved "https://r.cnpmjs.org/@types/react/download/@types/react-16.9.46.tgz#f0326cd7adceda74148baa9bff6e918632f5069e"
+  integrity sha1-8DJs163O2nQUi6qb/26RhjL1Bp4=
   dependencies:
     "@types/prop-types" "*"
     csstype "^3.0.2"
@@ -4102,9 +4102,9 @@ dashdash@^1.12.0:
     assert-plus "^1.0.0"
 
 dayjs@^1.7.7:
-  version "1.8.32"
-  resolved "https://r.cnpmjs.org/dayjs/download/dayjs-1.8.32.tgz#66c48b95c397d9f7907e89bd29f78b3d19d40294"
-  integrity sha1-ZsSLlcOX2feQfom9KfeLPRnUApQ=
+  version "1.8.33"
+  resolved "https://r.cnpmjs.org/dayjs/download/dayjs-1.8.33.tgz#18bc4a2b6c1c6f4d67b4c4f2536c0b97e5b766f7"
+  integrity sha1-GLxKK2wcb01ntMTyU2wLl+W3Zvc=
 
 debounce@^1.2.0:
   version "1.2.0"
@@ -11249,10 +11249,10 @@ taro-iconfont-cli@^2.1.0:
     react-iconfont-cli "2.0.0"
     react-native-iconfont-cli "2.0.0"
 
-taro-ui@^2.3.4:
-  version "2.3.4"
-  resolved "https://r.cnpmjs.org/taro-ui/download/taro-ui-2.3.4.tgz#a7a2cdd67b2b4a49d10c351d89def4d28b9bb192"
-  integrity sha1-p6LN1nsrSknRDDUdid700oubsZI=
+taro-ui@1.5.4:
+  version "1.5.4"
+  resolved "https://r.cnpmjs.org/taro-ui/download/taro-ui-1.5.4.tgz#9dae81fdabe86fe27381def19cbc9eca337078b6"
+  integrity sha1-na6B/avob+Jzgd7xnLyeyjNweLY=
   dependencies:
     "@types/react" "^16.7.3"
     bind-decorator "^1.0.11"

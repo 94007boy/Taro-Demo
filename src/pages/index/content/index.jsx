@@ -1,28 +1,13 @@
 import Taro, { PureComponent } from '@tarojs/taro'
-import { View, Button, Text,Swiper,SwiperItem } from '@tarojs/components'
-import SearchBar from '@components/search-bar'
-import TabBar from './tab-bar'
-import List from './list/index'
-import { observer, inject } from '@tarojs/mobx'
-import './index.scss'
-import Item from "./item";
-
-
-import "~taro-ui/dist/style/components/tabs.scss";
-import "~taro-ui/dist/style/components/load-more.scss";
-import "~taro-ui/dist/style/components/activity-indicator.scss";
-import "~taro-ui/dist/style/components/button.scss";
+import { View } from '@tarojs/components'
+import {inject, observer} from "@tarojs/mobx";
+import List from "../list";
 import { AtTabs, AtTabsPane } from 'taro-ui'
+import './index.scss'
 
-
-@inject('appMod')
 @inject('indexMod')
 @observer
-class IndexWeapp extends PureComponent {
-  config = {
-    navigationBarTitleText: '首页',
-    disableScroll: true
-  }
+class Index extends PureComponent {
 
   constructor(props) {
     super(props)
@@ -31,9 +16,7 @@ class IndexWeapp extends PureComponent {
     }
   }
 
-  componentDidShow () {
-    const { appMod } = this.props
-    appMod.init()
+  componentDidMount () {
     setTimeout(() => {
       this.handleClick(0)
     },100)
@@ -51,21 +34,18 @@ class IndexWeapp extends PureComponent {
         tabIdTemp = tab.id
       }
     })
-    console.log('handleClick',tabIdTemp)
     indexMod.onTabClick(tabIdTemp)
   }
 
   render () {
     const { indexMod: { tabs } } = this.props
     const { current } = this.state
-    console.log('render ... ',current)
     const tabList = tabs.map(tab => {
       return {title:tab.name}
     })
     return (
-      <View className='page'>
-        <SearchBar/>
-        <AtTabs className='tabBar' animated={false} current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
+      <View className='content'>
+        <AtTabs className='my-attabs' animated={false} current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
           {tabs.map((tab,index) => {
             return(
               <AtTabsPane key={index} current={this.state.current} index={index} >
@@ -77,6 +57,7 @@ class IndexWeapp extends PureComponent {
       </View>
     )
   }
+
 }
 
-export default IndexWeapp
+export default Index
