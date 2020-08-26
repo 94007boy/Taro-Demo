@@ -331,9 +331,9 @@ export default class UltimateListView extends Component {
     if (this.props.pagination) {
       if (this.props.autoPagination) {
         if (this.props.paginationWaitingView) {
+          console.log('paginationWaitingView 1')
           return this.props.paginationWaitingView(paginateCallback)
         }
-
         return (
           <View style={styles.paginationView}>
             <ActivityIndicator color={this.props.spinnerColor} size={this.props.waitingSpinnerSize} />
@@ -399,13 +399,17 @@ export default class UltimateListView extends Component {
       // this.onPaginate()
       return this.paginationWaitingView()
     }else if (this.state.paginationStatus === PaginationStatus.firstLoad) {
-      return this.paginationFetchingView()
-    } else if (this.state.paginationStatus === PaginationStatus.waiting && this.props.autoPagination === false) {
       console.log('renderFooter 2 ...')
+      this.onPaginate()
+      return this.paginationWaitingView()
+    } else if (this.state.paginationStatus === PaginationStatus.waiting && this.props.autoPagination === false) {
+      console.log('renderFooter 3 ...')
       return this.paginationWaitingView(this.onPaginate)
     } else if (this.state.paginationStatus === PaginationStatus.waiting && this.props.autoPagination === true) {
+      console.log('renderFooter 4 ...')
       return this.paginationWaitingView()
     } else if (this.getRows().length !== 0 && this.state.paginationStatus === PaginationStatus.allLoaded) {
+      console.log('renderFooter 5 ...')
       return this.paginationAllLoadedView()
     }
 
