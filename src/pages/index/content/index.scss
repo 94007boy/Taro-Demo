@@ -1,18 +1,10 @@
 @import "@styles/theme.scss";
-@import "~taro-ui/dist/style/components/tabs.scss";
-@import "~taro-ui/dist/style/components/load-more.scss";
-@import "~taro-ui/dist/style/components/activity-indicator.scss";
-@import "~taro-ui/dist/style/components/button.scss";
+
 .list-top{
-  top: 170px;
+  //top: 170px;
+  top: 250px;
 }
 .hidden { display:none; }
-.at-tabs__item--active {
-  color: $primary-color;
-}
-.at-tabs__item-underline {
-  background-color: $primary-color;
-}
 
 
 

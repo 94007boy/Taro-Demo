@@ -1,7 +1,7 @@
 import Taro, {PureComponent} from '@tarojs/taro'
 import {View, Text, Image, ScrollView} from '@tarojs/components'
 import './index.scss'
-import IconFont from '@components/iconfont';
+import IconFont from '@components/iconfont'
 import classNames from 'classnames'
 import gradienBg from '@assets/bg-gradien-gray.png'
 import {getWindowWidth} from '@utils/style'

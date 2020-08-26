@@ -19,6 +19,10 @@ export function getWindowHeight(showTabBar = true) {
   const { windowHeight, statusBarHeight, titleBarHeight } = info
   const tabBarHeight = showTabBar ? TAB_BAR_HEIGHT : 0
 
+  if (process.env.TARO_ENV === 'weapp' && !showTabBar) {
+    return windowHeight + statusBarHeight
+  }
+
   if (process.env.TARO_ENV === 'rn') {
     return windowHeight - statusBarHeight - NAVIGATOR_HEIGHT - tabBarHeight
   }
