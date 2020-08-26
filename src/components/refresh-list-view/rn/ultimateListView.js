@@ -169,7 +169,6 @@ export default class UltimateListView extends Component {
     })
   }
 
-
   componentWillUnmount() {
     this.setState({
       mounted: false
@@ -179,14 +178,16 @@ export default class UltimateListView extends Component {
   onRefresh = () => {
     if (this.state.mounted) {
       this.setState({
-        isRefreshing: true
+        isRefreshing: true,
+        autoBackTop:true
       })
       this.setPage(1)
-      this.props.onFetch(this.getPage(), this.postRefresh, this.endFetch)
+      this.props.onFetch(1, this.postRefresh, this.endFetch)
     }
   }
 
   onPaginate = () => {
+    console.log('onPaginate ...')
     if (this.state.paginationStatus !== PaginationStatus.allLoaded && !this.state.isRefreshing) {
       this.setState({ paginationStatus: PaginationStatus.waiting })
       this.props.onFetch(this.getPage() + 1, this.postPaginate, this.endFetch)
@@ -293,6 +294,7 @@ export default class UltimateListView extends Component {
       dataSource: rows.slice(),
       autoBackTop:false
     })
+    console.log('updateDataSource ...')
   }
 
   paginationFetchingView = () => {
@@ -392,12 +394,14 @@ export default class UltimateListView extends Component {
   }
 
   renderFooter = () => {
-    if(this.state.paginationStatus === PaginationStatus.firstLoad && this.getRows().length){//缓存数据的重新载入
-      this.onPaginate()
+    if(this.state.paginationStatus === PaginationStatus.firstLoad && !this.getRows().length){//缓存数据的重新载入
+      console.log('renderFooter 1 ...')
+      // this.onPaginate()
       return this.paginationWaitingView()
     }else if (this.state.paginationStatus === PaginationStatus.firstLoad) {
       return this.paginationFetchingView()
     } else if (this.state.paginationStatus === PaginationStatus.waiting && this.props.autoPagination === false) {
+      console.log('renderFooter 2 ...')
       return this.paginationWaitingView(this.onPaginate)
     } else if (this.state.paginationStatus === PaginationStatus.waiting && this.props.autoPagination === true) {
       return this.paginationWaitingView()
@@ -470,6 +474,7 @@ export default class UltimateListView extends Component {
       />
     )
   }
+
 }
 
 const styles = StyleSheet.create({

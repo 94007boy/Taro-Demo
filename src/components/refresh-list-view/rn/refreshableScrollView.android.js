@@ -57,7 +57,6 @@ export default class RefreshableScrollView extends ScrollView {
       refreshStatus: RefreshStatus.refreshing,
       refreshTitle: this.props.refreshableTitleRefreshing,
       date: this.props.date,
-      // autoBackTop:true,
       showRefreshHeader: false
     }
   }
@@ -80,13 +79,9 @@ export default class RefreshableScrollView extends ScrollView {
     }
   }
 
-  // setAutoBackTop(autoBackTop){
-  //   this.setState({autoBackTop})
-  // }
-  //
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({autoBackTop:nextProps.autoBackTop})
-  // }
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps',nextProps.autoBackTop)
+  }
 
   onScroll = (event) => {
     const { y } = event.nativeEvent.contentOffset
@@ -183,6 +178,7 @@ export default class RefreshableScrollView extends ScrollView {
       this.setState({
         showRefreshHeader: true
       })
+      console.log('onRefreshEnd',this._scrollview,this.props.autoBackTop)
       setTimeout(() => {
         if (this._scrollview && this._scrollview.scrollTo && this.props.autoBackTop) {
           this._scrollview.scrollTo({ x: 0, y: this.props.refreshViewHeight, animated: true })

@@ -19,7 +19,7 @@ export default class List extends PureComponent {
 
   constructor(props) {
     super(props)
-    this.scrollHeight = getWindowHeight(false) - 10
+    this.scrollHeight = getWindowHeight(false) - 80
     this.state = {
       offset:0
     }
@@ -46,6 +46,7 @@ export default class List extends PureComponent {
   async componentDidMount () {
     const { indexMod,tabId } = this.props
     if(this.listView && indexMod.checkTabCached(tabId)) {//数据已缓存，只更新界面
+      console.log('componentDidMount','数据已缓存，只更新界面')
       this.listView.endFetch()
       this.listView.updateDataSource(indexMod.getCachedTabData(tabId).slice())
       let offset = indexMod.getCurrentTabOffset(tabId)
@@ -53,6 +54,7 @@ export default class List extends PureComponent {
         this.listView.scrollToOffset({animated: false, offset:parseFloat(offset)})
       },0)
     }else if(this.listView) {
+      console.log('componentDidMount','数据未缓存，请求新数据')
       let page = this.listView.getPage()
       let status
       if(page > 1){
@@ -77,7 +79,12 @@ export default class List extends PureComponent {
   }
 
   onFetch = async (page = 1, startFetch, abortFetch) => {
+    console.log('onFetch',page)
     const { indexMod,tabId } = this.props
+    // if(this.listView && indexMod.checkTabCached(tabId)) {//数据已缓存，只更新界面
+    //   this.listView.endFetch()
+    //   return
+    // }
     let status
     if(page > 1){
       status = indexMod.action.LOADMORE
