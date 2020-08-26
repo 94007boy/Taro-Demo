@@ -84,6 +84,13 @@ export default class List extends PureComponent {
     const {indexMod} = this.props
     indexMod.setFollowState(index, !active)
     Taro.showToast({title: (active?'取消关注':'已关注')+name ,icon:'none'});
+    let temps = this.state.datas.map((row,i) => {
+      if(index === i){
+        row.data.author.follow.followed = !active
+      }
+      return row
+    })
+    this.setState({datas:temps})
   }
 
   render() {
