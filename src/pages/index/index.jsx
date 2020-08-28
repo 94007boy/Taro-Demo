@@ -20,6 +20,7 @@ class Index extends PureComponent {
   componentDidShow () {
     const { appMod } = this.props
     appMod.init()
+    Taro.showToast({title: 'componentDidShow' ,icon:'none'});
   }
 
   render () {
