@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
-import IndexWeapp from './pages/index'
+import Index from './pages/index'
 import store from "./store";
 import './app.scss'
 // import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
@@ -43,7 +43,7 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <IndexWeapp />
+        <Index />
       </Provider>
     )
   }

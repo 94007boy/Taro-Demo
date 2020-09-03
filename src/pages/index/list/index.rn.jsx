@@ -19,7 +19,7 @@ export default class List extends PureComponent {
 
   constructor(props) {
     super(props)
-    this.scrollHeight = getWindowHeight(false) - 100
+    this.scrollHeight = getWindowHeight(false) - 80
     this.state = {
       offset:0
     }
