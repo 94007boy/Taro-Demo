@@ -18,7 +18,6 @@ export default class List extends PureComponent {
 
   constructor(props) {
     super(props)
-    console.log('constructor h5 list ... ')
     scrollWarp.height = `${getWindowHeight(process.env.TARO_ENV === 'weapp'?true:false) - 85}px`
     this.state = {
       datas:[]
@@ -31,12 +30,10 @@ export default class List extends PureComponent {
    * @param nextProps
    */
   async componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps',nextProps)
     if(nextProps.index === nextProps.current){//页面可见状态
       const { indexMod,tabId } = this.props
       if(indexMod.checkTabCached(tabId)) {//数据已缓存，只更新界面
         let temps = indexMod.getCachedTabData(tabId).slice()
-        console.log('使用了缓存数据',temps.length)
         this.setState({datas:temps})
       }else {
         Taro.showLoading({
@@ -62,7 +59,6 @@ export default class List extends PureComponent {
   }
 
   onScrollToLower = async() => {
-    console.log('onScrollToLower ....')
     const { indexMod,tabId } = this.props
     const { indexMod:{tabs} } = this.props
     let id;
@@ -77,7 +73,6 @@ export default class List extends PureComponent {
   }
 
   onScrollToUpper= () => {
-    console.log('onScrollToUpper ....')
   }
 
   onFollowClick(index,active,name) {

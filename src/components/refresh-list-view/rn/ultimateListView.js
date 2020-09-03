@@ -187,7 +187,6 @@ export default class UltimateListView extends Component {
   }
 
   onPaginate = () => {
-    console.log('onPaginate ...')
     if (this.state.paginationStatus !== PaginationStatus.allLoaded && !this.state.isRefreshing) {
       this.setState({ paginationStatus: PaginationStatus.waiting })
       this.props.onFetch(this.getPage() + 1, this.postPaginate, this.endFetch)
@@ -294,7 +293,6 @@ export default class UltimateListView extends Component {
       dataSource: rows.slice(),
       autoBackTop:false
     })
-    console.log('updateDataSource ...')
   }
 
   paginationFetchingView = () => {
@@ -395,21 +393,15 @@ export default class UltimateListView extends Component {
 
   renderFooter = () => {
     if(this.state.paginationStatus === PaginationStatus.firstLoad && !this.getRows().length){//缓存数据的重新载入
-      console.log('renderFooter 1 ...')
-      // this.onPaginate()
       return this.paginationWaitingView()
     }else if (this.state.paginationStatus === PaginationStatus.firstLoad) {
-      console.log('renderFooter 2 ...')
       this.onPaginate()
       return this.paginationWaitingView()
     } else if (this.state.paginationStatus === PaginationStatus.waiting && this.props.autoPagination === false) {
-      console.log('renderFooter 3 ...')
       return this.paginationWaitingView(this.onPaginate)
     } else if (this.state.paginationStatus === PaginationStatus.waiting && this.props.autoPagination === true) {
-      console.log('renderFooter 4 ...')
       return this.paginationWaitingView()
     } else if (this.getRows().length !== 0 && this.state.paginationStatus === PaginationStatus.allLoaded) {
-      console.log('renderFooter 5 ...')
       return this.paginationAllLoadedView()
     }
 

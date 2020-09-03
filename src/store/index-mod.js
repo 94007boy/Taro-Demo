@@ -123,7 +123,6 @@ indexMod.getDatas = async function (id,action = this.action.TABCHANGE) {
     this.datas = this.datas.slice().map(item => {
       if (item && item.id === this.currentId) {
         item.res = item.res.slice().concat(res)
-        console.log('LOADMORE',item.res.length)
       }
       return item
     })

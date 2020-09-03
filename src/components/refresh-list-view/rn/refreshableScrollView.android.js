@@ -80,7 +80,6 @@ export default class RefreshableScrollView extends ScrollView {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps',nextProps.autoBackTop)
   }
 
   onScroll = (event) => {
@@ -178,7 +177,6 @@ export default class RefreshableScrollView extends ScrollView {
       this.setState({
         showRefreshHeader: true
       })
-      console.log('onRefreshEnd',this._scrollview,this.props.autoBackTop)
       setTimeout(() => {
         if (this._scrollview && this._scrollview.scrollTo && this.props.autoBackTop) {
           this._scrollview.scrollTo({ x: 0, y: this.props.refreshViewHeight, animated: true })

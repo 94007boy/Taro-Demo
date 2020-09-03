@@ -24,7 +24,8 @@
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
-    "dev:quickapp": "npm run build:quickapp -- --watch"
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "build-bundle": "react-native bundle --entry-file rn_temp/index.js --platform android --dev false --bundle-output ./bundle/index.android.bundle --assets-dest ./bundle/"
   },
   "author": "",
   "license": "MIT",

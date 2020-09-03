@@ -19,7 +19,7 @@ export default class List extends PureComponent {
 
   constructor(props) {
     super(props)
-    this.scrollHeight = getWindowHeight(false) - 80
+    this.scrollHeight = getWindowHeight(false) - 100
     this.state = {
       offset:0
     }
@@ -45,10 +45,7 @@ export default class List extends PureComponent {
 
   async componentDidMount () {
     const { indexMod,tabId } = this.props
-    Taro.showToast({title: 'componentDidMount' ,icon:'none'});
     if(this.listView && indexMod.checkTabCached(tabId)) {//数据已缓存，只更新界面
-      console.log('componentDidMount','数据已缓存，只更新界面')
-      Taro.showToast({title: 'componentDidMount 数据已缓存，只更新界面' ,icon:'none'});
       this.listView.endFetch()
       this.listView.updateDataSource(indexMod.getCachedTabData(tabId).slice())
       let offset = indexMod.getCurrentTabOffset(tabId)
@@ -56,8 +53,6 @@ export default class List extends PureComponent {
         this.listView.scrollToOffset({animated: false, offset:parseFloat(offset)})
       },0)
     }else if(this.listView) {
-      console.log('componentDidMount','数据未缓存，请求新数据')
-      Taro.showToast({title: 'componentDidMount 数据未缓存，请求新数据' ,icon:'none'});
       let page = this.listView.getPage()
       let status
       if(page > 1){

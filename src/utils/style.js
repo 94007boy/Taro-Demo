@@ -24,7 +24,7 @@ export function getWindowHeight(showTabBar = true) {
   }
 
   if (process.env.TARO_ENV === 'rn') {
-    return windowHeight - tabBarHeight
+    return windowHeight - tabBarHeight - statusBarHeight
   }
 
   if (process.env.TARO_ENV === 'h5') {
