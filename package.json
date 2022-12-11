@@ -52,7 +52,7 @@
     "mobx": "4.8.0",
     "nerv-devtools": "^1.5.5",
     "nervjs": "^1.5.5",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "react": "16.3.1",
     "react-native": "^0.59.9",
     "react-native-svg": "^12.1.0",
